@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "158611303047",
+    "project_id": "messbook-6758d",
+    "storage_bucket": "messbook-6758d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158611303047:android:4f2d62dd4668adb658a622",
+        "android_client_info": {
+          "package_name": "com.example.messbook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "158611303047-1qvq1rkgp0g137uctatdj720e042j53e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAQtiSq9DgsX-5QqT--VGX5ODSw5yphak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "158611303047-1qvq1rkgp0g137uctatdj720e042j53e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/ButtonColor"
+    android:padding="20dp"
+    android:gravity="center"
+    tools:context=".AddMember">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/border_box"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add new Member"
+            android:layout_gravity="center"
+            android:paddingBottom="20dp"
+            android:textSize="26dp"
+            android:textColor="@color/ButtonColor"
+            android:textStyle="bold"
+            />
+        <EditText
+            android:id="@+id/newMemberId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:hint="Enter name"
+            android:textColorHint="#484A48"
+            android:background="@drawable/border_box"
+            android:padding="10dp"
+            android:textSize="18dp"
+            />
+
+        <EditText
+            android:id="@+id/initialDepositId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Initial deposit"
+            android:textSize="18dp"
+            android:textColorHint="#484A48"
+            android:textColor="@color/black"
+            android:inputType="numberDecimal"
+            android:background="@drawable/border_box"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            />
+        <EditText
+            android:id="@+id/addMealId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Meal count"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:textColorHint="#484A48"
+            android:background="@drawable/border_box"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:inputType="numberDecimal"
+            />
+        <Button
+            android:id="@+id/addNewMemberBtnId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/ButtonColor"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"/>
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

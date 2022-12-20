@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/updateMemberNameId"
+            android:text="Update List"
+            android:textSize="24dp"
+            android:textColor="#329ACC"
+            android:gravity="center"
+            android:layout_marginBottom="7dp"
+            android:textStyle="bold"
+            />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="5dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Meal: "
+                    android:textColor="#484A48"
+                    android:textSize="20dp"
+                    android:padding="5dp"
+                    />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/decrementMealID"
+                    android:src="@drawable/ic_baseline_remove_24"
+                    />
+                <TextView
+                    android:id="@+id/updateMealId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_box"
+                    android:padding="15dp"
+                    android:text="o.5"
+                    android:textSize="20dp"
+                    android:textColor="#484A48"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/incrementMealId"
+                    android:src="@drawable/ic_baseline_add_24"/>
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/updateAmountId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_box"
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                android:textColorHint="#484A48"
+                android:textColor="#484A48"
+                android:layout_marginTop="3dp"
+                android:hint="Add Money"/>
+
+
+
+        <Button
+            android:id="@+id/updateBtnId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/ButtonColor"
+            android:text="ADd"
+            android:layout_gravity="right"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:padding="10dp"
+            android:textSize="20dp"
+            android:textColor="#484A48"
+            />
+
+</LinearLayout>

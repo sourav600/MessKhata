@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/ButtonColor"
+    android:padding="20dp"
+    android:gravity="center"
+    tools:context=".AddCost">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/border_box"
+        android:padding="20dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add new Cost"
+            android:layout_gravity="center"
+            android:paddingBottom="20dp"
+            android:textSize="26dp"
+            android:textColor="@color/ButtonColor"
+            android:textStyle="bold"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="35dp"
+            android:padding="10dp"
+            android:weightSum="2">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Select Person : "
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:layout_gravity="center"
+                android:gravity="left"
+                />
+            <Spinner
+                android:id="@+id/memberSpinner2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="20dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:backgroundTint="@color/black"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/border_box"
+            android:weightSum="2">
+        <TextView
+            android:id="@+id/costDate_Id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.4"
+            android:padding="10dp"
+            android:hint="Date"
+            android:gravity="left"
+            android:layout_gravity="center"
+            android:textColorHint="#484A48"
+            android:textColor="#484A48"
+            android:textSize="18dp"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/calanderId"
+            android:layout_weight=".6"
+            android:drawableRight="@drawable/ic_baseline_calendar_today_24"
+            android:layout_marginRight="10dp"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+        <EditText
+            android:id="@+id/costAmountId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Amount"
+            android:textColorHint="#484A48"
+            android:textColor="#484A48"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:inputType="numberDecimal"
+            android:background="@drawable/border_box"
+            android:padding="10dp"
+            android:textSize="18dp"
+            />
+        <EditText
+            android:id="@+id/costDescriptionId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description"
+            android:textColorHint="#484A48"
+            android:textColor="#484A48"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/border_box"
+            android:padding="10dp"
+            android:textSize="18dp"
+            />
+        <Button
+            android:id="@+id/addCost_BtnId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:backgroundTint="@color/ButtonColor"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"/>
+    </LinearLayout>
+
+
+</LinearLayout>
