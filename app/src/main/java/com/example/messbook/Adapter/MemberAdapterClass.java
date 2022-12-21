@@ -58,15 +58,14 @@ public class MemberAdapterClass extends RecyclerView.Adapter<MemberAdapterClass.
 
         member_db = new Member_DB(context);
         cost_db = new Cost_DB(context);
-
-
+        //set current status of a member
         float T_meal = member_db.getSumOfMeal();
         int sumAllCost = cost_db.getTotalCost();
         float meal_rate = (sumAllCost*1.0f) / T_meal;
         holder.Amount.setText(String.format("%.1f",memberModel.getMoney() - (meal_rate*memberModel.getMeal()))+" ");
 
         //click on member row recycler item
-        holder.rv_memberRow.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             private float meal = 0.5f;
 
             @Override
@@ -78,7 +77,8 @@ public class MemberAdapterClass extends RecyclerView.Adapter<MemberAdapterClass.
                 FloatingActionButton incrementMeal =  dialog.findViewById(R.id.incrementMealId);
                 FloatingActionButton decrementMeal = dialog.findViewById(R.id.decrementMealID);
                 TextView updateMeal_tv = dialog.findViewById(R.id.updateMealId);
-
+                TextView updateAmount_tv = dialog.findViewById(R.id.updateAmountId);
+                Button updateBtn = dialog.findViewById(R.id.updateBtnId);
 
                 incrementMeal.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -96,19 +96,21 @@ public class MemberAdapterClass extends RecyclerView.Adapter<MemberAdapterClass.
                 });
 
 
-//                Button updateBtn = dialog.findViewById(R.id.updateBtnId);
-//                Button updateAmount = dialog.findViewById(R.id.updateAmountId);
-//                updateBtn.setOnClickListener(new View.OnClickListener() {
-//                    String name = memberModel.getName();
-//                    int amount = memberModel.getMoney() + Integer.parseInt(updateAmount.getText().toString());
-//                    float meal = memberModel.getMeal() + Float.parseFloat(updateMeal_tv.getText().toString());
-//                    @Override
-//                    public void onClick(View view) {
-//                        member_db = new Member_DB(context);
-//                        member_db.updateMember(name, amount,meal);
-//                        Toast.makeText(context, "Information Updated !", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
+
+
+                String name = memberModel.getName();
+                int amount = memberModel.getMoney() + Integer.parseInt(updateAmount_tv.getText().toString());
+                float meal = memberModel.getMeal() + Float.parseFloat(updateMeal_tv.getText().toString());
+
+                updateBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        member_db = new Member_DB(context);
+                        member_db.updateMember(name, amount,meal);
+                        Toast.makeText(context, "Information Updated !", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                });
             }
         });
     }
@@ -119,11 +121,8 @@ public class MemberAdapterClass extends RecyclerView.Adapter<MemberAdapterClass.
     }
 
 
-
     public class memberAdapterView extends RecyclerView.ViewHolder{
-        TextView Name,Amount,Deposit,Meal,updateMemberName;
-        LinearLayout rv_memberRow;
-
+        TextView Name,Amount,Deposit,Meal;
 
         public memberAdapterView(@NonNull View itemView) {
             super(itemView);
@@ -131,8 +130,6 @@ public class MemberAdapterClass extends RecyclerView.Adapter<MemberAdapterClass.
             Deposit = itemView.findViewById(R.id.memberDepositId);
             Meal = itemView.findViewById(R.id.memberMealId);
             Amount = itemView.findViewById(R.id.memberAmountId);
-            rv_memberRow = itemView.findViewById(R.id.rv_memberRowId);
-            updateMemberName = itemView.findViewById(R.id.updateMemberNameId);
         }
     }
 }

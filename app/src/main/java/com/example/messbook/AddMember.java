@@ -1,5 +1,6 @@
 package com.example.messbook;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +17,11 @@ import android.widget.Toast;
 
 import com.example.messbook.Database.Member_DB;
 import com.example.messbook.Model.MemberModel;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AddMember extends AppCompatActivity {
     EditText name_et, initialDeposit_et,meal_et;
@@ -57,6 +63,20 @@ public class AddMember extends AppCompatActivity {
                     else {
                         MemberModel model = new MemberModel(newName, amount, meal);
                         member_db.insertMemberData(model);
+
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users").child("currentUser");
+                        reference.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                String currentUserMail = snapshot.getValue(String.class);
+                                DatabaseReference myref = FirebaseDatabase.getInstance().getReference("users").child(currentUserMail).child("members").child(newName);
+                                myref.setValue(model);
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Log.w("TAG", "Failed to read value.", error.toException());
+                            }
+                        });
                         Toast.makeText(AddMember.this, "Member Added Succesfully!", Toast.LENGTH_SHORT).show();
 
 

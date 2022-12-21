@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     Button logInBtn;
     TextView noAccount;
     public static String preferenceName = "MyPrefs";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         logInPass = findViewById(R.id.logInPassId);
         logInBtn = findViewById(R.id.logInBtnId);
         noAccount = findViewById(R.id.noAccountId);
+
 
         logInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+
     public boolean validMail(){
         String mail = logInEmail.getText().toString();
         if(mail.isEmpty()){
@@ -79,11 +83,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void checkUser(){
-        String mail = logInEmail.getText().toString().trim();
-        String pass = logInPass.getText().toString().trim();
+        String mail = logInEmail.getText().toString();
+        String pass = logInPass.getText().toString();
 
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");
         Query checkUserData = myRef.orderByChild("email").equalTo(mail);
+
         // Read from the database
         checkUserData.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -94,6 +99,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     if(passFromDB.equals(pass)){
                         logInEmail.setError(null);
+                        FirebaseDatabase.getInstance().getReference("users").child("currentUser").removeValue();
+                        FirebaseDatabase.getInstance().getReference("users").child("currentUser").setValue(mail);
                         Toast.makeText(LoginActivity.this, "Log in successful", Toast.LENGTH_SHORT).show();
 
                         SharedPreferences preferences = getSharedPreferences(LoginActivity.preferenceName,0);

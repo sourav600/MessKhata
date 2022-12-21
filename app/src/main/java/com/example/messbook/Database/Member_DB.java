@@ -41,6 +41,7 @@ public class Member_DB extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
+    //add new member
     public void insertMemberData(MemberModel model){
         SQLiteDatabase database = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -51,6 +52,19 @@ public class Member_DB extends SQLiteOpenHelper {
 
         database.insert("member_Info",null,contentValues);
         database.close();
+    }
+
+    //Update members info
+    public void updateMember(String name,int amount, float meal){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("memberName",name);
+        values.put("memberAmount",amount);
+        values.put("memberMeal",meal);
+
+        db.update("member_Info",values,"name=?",new String[] {name});
+        db.close();
     }
 
     public ArrayList<MemberModel> getMemberData(){
@@ -112,17 +126,6 @@ public class Member_DB extends SQLiteOpenHelper {
         return total;
     }
 
-//    //Update members info
-//    public void updateMember(String name,int amount, float meal){
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues values = new ContentValues();
-//
-//        values.put("memberName",name);
-//        values.put("memberAmount",amount);
-//        values.put("memberMeal",meal);
-//
-//        db.update("member_Info",values,"name=?",new String[] {name});
-//        db.close();
-//    }
+
 
 }
