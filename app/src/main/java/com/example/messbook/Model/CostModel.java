@@ -6,6 +6,7 @@ public class CostModel {
     private String amount;
     private String desc;
 
+    public CostModel(){}
 
     public CostModel(String name,String date, String  amount, String desc) {
         this.name = name;

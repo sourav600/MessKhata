@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="ButtonColor">#54C0F1</color>
     <color name="bgColor">#BEEAFF</color>
+    <color name="appColor">#54C0F1</color>
+    <color name="titleBar">#919698</color>
+
 </resources>

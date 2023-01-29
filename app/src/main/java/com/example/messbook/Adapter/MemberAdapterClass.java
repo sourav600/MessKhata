@@ -98,19 +98,19 @@ public class MemberAdapterClass extends RecyclerView.Adapter<MemberAdapterClass.
 
 
 
-                String name = memberModel.getName();
-                int amount = memberModel.getMoney() + Integer.parseInt(updateAmount_tv.getText().toString());
-                float meal = memberModel.getMeal() + Float.parseFloat(updateMeal_tv.getText().toString());
-
-                updateBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        member_db = new Member_DB(context);
-                        member_db.updateMember(name, amount,meal);
-                        Toast.makeText(context, "Information Updated !", Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    }
-                });
+//                String name = memberModel.getName();
+//                int amount = memberModel.getMoney() + Integer.parseInt(updateAmount_tv.getText().toString());
+//                float meal = memberModel.getMeal() + Float.parseFloat(updateMeal_tv.getText().toString());
+//
+//                updateBtn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        member_db = new Member_DB(context);
+//                        member_db.updateMember(name, amount,meal);
+//                        Toast.makeText(context, "Information Updated !", Toast.LENGTH_SHORT).show();
+//                        dialog.dismiss();
+//                    }
+//                });
             }
         });
     }

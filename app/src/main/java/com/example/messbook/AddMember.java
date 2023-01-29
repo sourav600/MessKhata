@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.messbook.Database.Member_DB;
 import com.example.messbook.Model.MemberModel;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +27,6 @@ import com.google.firebase.database.ValueEventListener;
 public class AddMember extends AppCompatActivity {
     EditText name_et, initialDeposit_et,meal_et;
     Button addNewMemberBtn;
-
     Member_DB member_db;
 
     @Override
@@ -47,6 +47,7 @@ public class AddMember extends AppCompatActivity {
         meal_et = (EditText) findViewById(R.id.addMealId);
         addNewMemberBtn = (Button) findViewById(R.id.addNewMemberBtnId);
 
+
         addNewMemberBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,14 +62,16 @@ public class AddMember extends AppCompatActivity {
 
                     //pass parameter to model
                     else {
+                        //SQLite
                         MemberModel model = new MemberModel(newName, amount, meal);
                         member_db.insertMemberData(model);
 
-                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users").child("currentUser");
+                        //Firebase
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
                         reference.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                String currentUserMail = snapshot.getValue(String.class);
+                                String currentUserMail = snapshot.child("currentUser").getValue(String.class);
                                 DatabaseReference myref = FirebaseDatabase.getInstance().getReference("users").child(currentUserMail).child("members").child(newName);
                                 myref.setValue(model);
                             }

@@ -8,9 +8,16 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.example.messbook.Model.MemberModel;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -68,10 +75,11 @@ public class Member_DB extends SQLiteOpenHelper {
     }
 
     public ArrayList<MemberModel> getMemberData(){
+        ArrayList<MemberModel> list;
+        //SQLite
         SQLiteDatabase database = getWritableDatabase();
         Cursor cursor;
         cursor = database.rawQuery("select memberName,memberAmount,memberMeal from member_Info",null);
-        ArrayList<MemberModel> list;
         if (cursor.moveToFirst()){
             list = new ArrayList<>();
             do{
@@ -87,24 +95,28 @@ public class Member_DB extends SQLiteOpenHelper {
         return list;
     }
 
-    public ArrayList<String> getMemberName(){
-        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("select memberName from member_Info",null);
-        ArrayList<String > list;
-        if(cursor.moveToFirst()){
-            list = new ArrayList<>();
-            do {
-                String s = new String(cursor.getString(0));
-                list.add(s);
-            }while (cursor.moveToNext());
-        }
-        else{
-            list = new ArrayList<>();
-        }
-        cursor.close();
-        sqLiteDatabase.close();
-        return list;
-    }
+      //SQLite
+//    public ArrayList<String> getMemberName(){
+//        ArrayList<String > list = new ArrayList<>();
+//
+//        //SQLite
+//        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+//        Cursor cursor = sqLiteDatabase.rawQuery("select memberName from member_Info",null);
+//
+//        if(cursor.moveToFirst()){
+//            list = new ArrayList<>();
+//            do {
+//                String s = new String(cursor.getString(0));
+//                list.add(s);
+//            }while (cursor.moveToNext());
+//        }
+//        else{
+//            list = new ArrayList<>();
+//        }
+//        cursor.close();
+//        sqLiteDatabase.close();
+//        return list;
+//    }
 
     //return total amount
     public int getSumOfAmount(){

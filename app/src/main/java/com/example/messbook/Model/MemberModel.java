@@ -5,6 +5,7 @@ public class MemberModel {
     private int money;
     private float meal;
 
+    public MemberModel(){} //default constructor
 
     public MemberModel(String name, int money, float meal) {
         this.name = name;

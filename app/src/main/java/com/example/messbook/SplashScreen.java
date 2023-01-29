@@ -1,6 +1,7 @@
 package com.example.messbook;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,8 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(SplashScreen.this,R.color.appColor));
 
         new Handler().postDelayed(new Runnable() {
             @Override

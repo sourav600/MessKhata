@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -25,6 +26,11 @@ import com.example.messbook.Database.Member_DB;
 import com.example.messbook.Model.MemberModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -44,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.titleBar));
 
         addCostBtn =  findViewById(R.id.addCostBtnId);
         messCostBtn =  findViewById(R.id.messCostBtnId);
@@ -56,14 +63,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mealRate = (TextView) findViewById(R.id.mealRateId);
         updateInfoBtn = (Button) findViewById(R.id.updateInfoBtnId);
 
+
         addCostBtn.setOnClickListener(this);
         messCostBtn.setOnClickListener(this);
-        AddMemberBtn.setOnClickListener(this);
         messMemberBtn.setOnClickListener(this);
         updateInfoBtn.setOnClickListener(this);
+        AddMemberBtn.setOnClickListener(this);
 
 
-// Navagation Drawar------------------------------
+        // Navagation Drawar------------------------------
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_View);
         imageMenu = findViewById(R.id.imageMenu);
@@ -100,7 +108,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Code Here
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
@@ -113,19 +120,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onResume();
         m_DB = new Member_DB(MainActivity.this);
         c_DB = new Cost_DB(MainActivity.this);
-        int sumAllAmnt = m_DB.getSumOfAmount();
-        TotalBalance.setText(sumAllAmnt+" TK  ");
 
-        float sumAllMeal = m_DB.getSumOfMeal();
-        TotalMeal.setText(String.format("%.1f",sumAllMeal)+"  ");
+        //Total Amount, Total Meal, Total Cost
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                long sumAllAmnt=0, sumAllCost=0;
+                float sumAllMeal = 0.0f;
+                String currentUserMail = snapshot.child("currentUser").getValue(String.class);
+                //Total Amount, meal
+                for(DataSnapshot itemsnapshot : snapshot.child(currentUserMail).child("members").getChildren()){
+                    sumAllAmnt += (itemsnapshot.child("money").getValue(Long.class));
+                    sumAllMeal += itemsnapshot.child("meal").getValue(Float.class);
+                }
+                //Total Cost
+                for(DataSnapshot itemsnapshot : snapshot.child(currentUserMail).child("costs").getChildren()){
+                    sumAllCost += Long.parseLong(itemsnapshot.child("amount").getValue(String.class));
+                }
+                TotalBalance.setText(sumAllAmnt+" Tk ");
+                TotalMeal.setText(String.format("%.1f",sumAllMeal)+"  ");
+                TotalCost.setText(sumAllCost+" Tk");
+                RemainingBalance.setText((sumAllAmnt-sumAllCost) + " Tk " );
 
-        int sumAllCost = c_DB.getTotalCost();
-        TotalCost.setText(sumAllCost+" TK  ");
+                float m_rate = (float) sumAllCost/sumAllMeal;
+                mealRate.setText(String.format("%.1f",m_rate)+" TK  ");
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-        RemainingBalance.setText(sumAllAmnt-sumAllCost+" TK  ");
+            }
+        });
 
-        float m_rate = (float) sumAllCost/sumAllMeal;
-        mealRate.setText(String.format("%.1f",m_rate)+" TK  ");
+
+
+
+
     }
 
 

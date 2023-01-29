@@ -1,5 +1,6 @@
 package com.example.messbook;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +22,11 @@ import android.widget.Toast;
 import com.example.messbook.Database.Cost_DB;
 import com.example.messbook.Database.Member_DB;
 import com.example.messbook.Model.CostModel;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -60,7 +66,7 @@ public class AddCost extends AppCompatActivity {
         int currentDay = datePicker.getDayOfMonth();
         int currentMonth = datePicker.getMonth()+1;
         int currentYear = datePicker.getYear();
-        costDate.setText(" "+currentDay+"/"+currentMonth+"/"+currentYear);
+        costDate.setText(" "+currentDay+"-"+currentMonth+"-"+currentYear);
 
         //Date peaker dialog box open
         calander.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +77,7 @@ public class AddCost extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                                costDate.setText(" "+day+"/"+(month+1)+"/"+year);
+                                costDate.setText(" "+day+"-"+(month+1)+"-"+year);
                             }
                         },currentYear,currentMonth,currentDay);
                 datePickerDialog.show();
@@ -95,8 +101,24 @@ public class AddCost extends AppCompatActivity {
                         Toast.makeText(AddCost.this,"Please enter amount!",Toast.LENGTH_SHORT).show();
                     }
                     else {
+                        //SQLite
                         CostModel model = new CostModel(Name,Date,Amount,Description);
                         cost_db.insertCostData(model);
+
+                        //Firebase
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
+                        reference.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                String currentUserMail = snapshot.child("currentUser").getValue(String.class);
+                                DatabaseReference myref = FirebaseDatabase.getInstance().getReference("users").child(currentUserMail).child("costs").child(costDate.getText().toString());
+                                myref.setValue(model);
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Log.w("TAG", "Failed to read value.", error.toException());
+                            }
+                        });
                         Toast.makeText(AddCost.this, "Cost Added Successfully!", Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(AddCost.this, MainActivity.class);
@@ -115,7 +137,21 @@ public class AddCost extends AppCompatActivity {
         member_db = new Member_DB(this);
         ArrayList<String> arrayList = new ArrayList<String>();
         arrayList.add("Select");
-        arrayList.addAll(member_db.getMemberName()) ;
+        //arrayList.addAll(member_db.getMemberName()) ;
+        DatabaseReference reference= FirebaseDatabase.getInstance().getReference("users");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String currentUserMail = snapshot.child("currentUser").getValue(String.class);
+                for(DataSnapshot itemSanpshot : snapshot.child(currentUserMail).child("members").getChildren()){
+                    arrayList.add(itemSanpshot.child("name").getValue(String.class));
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item,arrayList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
