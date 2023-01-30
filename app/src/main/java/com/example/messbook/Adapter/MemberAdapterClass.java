@@ -98,9 +98,7 @@ public class MemberAdapterClass extends RecyclerView.Adapter<MemberAdapterClass.
 
 
 
-//                String name = memberModel.getName();
-//                int amount = memberModel.getMoney() + Integer.parseInt(updateAmount_tv.getText().toString());
-//                float meal = memberModel.getMeal() + Float.parseFloat(updateMeal_tv.getText().toString());
+
 //
 //                updateBtn.setOnClickListener(new View.OnClickListener() {
 //                    @Override

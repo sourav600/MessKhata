@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     private CardView AddMemberBtn, messMemberBtn,addCostBtn,messCostBtn ;
     private Button updateInfoBtn;
     private TextView TotalBalance,TotalMeal,TotalCost,RemainingBalance,mealRate;
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Navagation Drawar------------------------------
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_View);
-        imageMenu = findViewById(R.id.imageMenu);
+        imageMenu = findViewById(R.id.imageMenuId);
 
         toggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
@@ -82,36 +83,67 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Drawar click event
         // Drawer item Click event ------
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                switch (item.getItemId()) {
-                    case R.id.mHome:
-                        Toast.makeText(MainActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawers();
-                        break;
-
-                    case R.id.mShare:
-                        Toast.makeText(MainActivity.this, "Facebook", Toast.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawers();
-                        break;
-
-                }
-
-                return false;
-            }
-        });
+        navigationView.bringToFront();
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.mHome);
 
         // App Bar Click Event
-        imageMenu = findViewById(R.id.imageMenu);
         imageMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawerLayout.openDrawer(GravityCompat.START);
+                if(drawerLayout.isDrawerVisible(GravityCompat.START))
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                else drawerLayout.openDrawer(GravityCompat.START);
             }
         });
 
+        //nav animation
+//        drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+//            @Override
+//            public void onDrawerSlide(View drawerView, float slideOffset) {
+//                final float diffScaledOffset = slideOffset * (1 - END_SCALE);
+//                final float offsetScale = 1 - diffScaledOffset;
+//                contentView.setScaleX(offsetScale);
+//                contentView.setScaleY(offsetScale);
+//                final float xOffset = drawerView.getWidth() * slideOffset;
+//                final float xoffSetDiff = contentView.getWidth() * diffScaledOffset / 2;
+//                final float xT = xOffset - xoffSetDiff;
+//                contentView.setTranslationX(xT);
+//
+//                super.onDrawerSlide(drawerView, slideOffset);
+//            }
+//        });
+    }
+
+    @Override
+    public void onBackPressed(){
+        if(drawerLayout.isDrawerVisible(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }else
+            super.onBackPressed();
+    }
+    //nav item click
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if(id==R.id.nav_C_listId){
+            Intent intent = new Intent(MainActivity.this, Costpage.class);
+            startActivity(intent);
+        }
+        else if(id==R.id.nav_M_listId){
+            Intent intent = new Intent(MainActivity.this, MemberPage.class);
+            startActivity(intent);
+        }
+        else if(id==R.id.nav_M_addId){
+            Intent intent = new Intent(MainActivity.this, AddMember.class);
+            startActivity(intent);
+        }
+        else if(id==R.id.nav_C_addId){
+            Intent intent = new Intent(MainActivity.this, AddCost.class);
+            startActivity(intent);
+        }
+
+        return true;
     }
 
     //upadate all value after each member & cost added
@@ -152,12 +184,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-
-
-
-
     }
-
 
     @Override
     public void onClick(View view) {
@@ -183,5 +210,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
 
 }

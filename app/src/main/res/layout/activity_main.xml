@@ -26,9 +26,9 @@
             android:visibility="visible">
 
             <ImageView
-                android:id="@+id/imageMenu"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:id="@+id/imageMenuId"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_menu"/>
 
@@ -56,17 +56,17 @@
         app:headerLayout="@layout/drawar_head_layout"
         app:menu="@menu/navigation_menu" />
 
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="?actionBarSize"
-        android:layout_marginBottom="15dp">
-
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
->
+        android:layout_marginTop="?actionBarSize"
+        android:layout_marginBottom="15dp"
+        android:orientation="vertical">
+
         <LinearLayout
         android:background="@drawable/border_box2"
         android:layout_width="match_parent"
@@ -422,11 +422,13 @@
             app:cardCornerRadius="15dp"
             android:elevation="10dp"
             android:textStyle="bold"/>
+
     </LinearLayout>
+</ScrollView>
 
 
 
-    </ScrollView>
+
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

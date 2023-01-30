@@ -17,7 +17,6 @@
         android:padding="10dp"
         android:layout_margin="5dp"
         android:orientation="vertical">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,7 +26,6 @@
             android:layout_gravity="center"
             android:textStyle="bold"
             />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,7 +51,6 @@
                 android:backgroundTint="@color/black"
                 />
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -104,7 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/incrementMealId"
-                    android:backgroundTint="#2FF437"
+                    android:backgroundTint="#4CAF50"
                     android:src="@drawable/ic_baseline_add_24"/>
             </LinearLayout>
 
@@ -138,7 +135,6 @@
                 android:hint="Add Money"/>
         </LinearLayout>
 
-
         <Button
             android:id="@+id/updateBtnId"
             android:layout_width="match_parent"
@@ -154,5 +150,4 @@
             android:textColor="@color/black"
             />
     </LinearLayout>
-
 </LinearLayout>

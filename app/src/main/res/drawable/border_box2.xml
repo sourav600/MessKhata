@@ -5,8 +5,5 @@
         android:color="@color/ButtonColor"/>
     <corners
         android:radius="20dp"/>
-<!--    <stroke-->
-<!--        android:color="@color/black"-->
-<!--        android:width="0.5dp"/>-->
 
 </shape>
