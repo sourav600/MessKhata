@@ -9,6 +9,10 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -37,7 +41,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     private CardView AddMemberBtn, messMemberBtn,addCostBtn,messCostBtn ;
-    private Button updateInfoBtn;
+    private Button updateInfoBtn, warningYes, warningNo;
     private TextView TotalBalance,TotalMeal,TotalCost,RemainingBalance,mealRate;
     private Member_DB m_DB;
     private Cost_DB c_DB;
@@ -117,14 +121,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onBackPressed(){
+        //super.onBackPressed();
         if(drawerLayout.isDrawerVisible(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);
-        }else
-            super.onBackPressed();
+        }else{
+            AlertDialog.Builder alertDialog  = new AlertDialog.Builder(MainActivity.this);
+            alertDialog.setTitle("Warning!");
+            alertDialog.setMessage("Do you want to exit ?");
+            alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    finishAffinity();
+                }
+            });
+            alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            alertDialog.show();
+        }
+
     }
     //nav item click
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        warningNo = findViewById(R.id.warningNoBtn);
+        warningYes = findViewById(R.id.warningYesBtn);
         int id = item.getItemId();
         if(id==R.id.nav_C_listId){
             Intent intent = new Intent(MainActivity.this, Costpage.class);
@@ -142,6 +166,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(MainActivity.this, AddCost.class);
             startActivity(intent);
         }
+        else if(id == R.id.logoutId){
+            AlertDialog.Builder alertDialog  = new AlertDialog.Builder(MainActivity.this);
+            alertDialog.setTitle("Warning!");
+            alertDialog.setMessage("Are you sure to log out ?");
+            alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Toast.makeText(MainActivity.this, "Log Out", Toast.LENGTH_SHORT).show();
+                    SharedPreferences preferences = getSharedPreferences(LoginActivity.preferenceName,0);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putBoolean("hasLoggedIn",false);
+                    editor.commit();
+                    Intent intent = new Intent(MainActivity.this, SplashScreen.class);
+                    startActivity(intent);
+                }
+            });
+            alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            alertDialog.show();
+        }
 
         return true;
     }
@@ -152,6 +200,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onResume();
         m_DB = new Member_DB(MainActivity.this);
         c_DB = new Cost_DB(MainActivity.this);
+
+        //close Navigation if it's open
+        drawerLayout = findViewById(R.id.drawer_layout);
+        if(drawerLayout.isDrawerVisible(GravityCompat.START))
+            drawerLayout.closeDrawer(GravityCompat.START);
 
         //Total Amount, Total Meal, Total Cost
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users");
@@ -175,14 +228,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 TotalCost.setText(sumAllCost+" Tk");
                 RemainingBalance.setText((sumAllAmnt-sumAllCost) + " Tk " );
 
-                float m_rate = (float) sumAllCost/sumAllMeal;
-                mealRate.setText(String.format("%.1f",m_rate)+" TK  ");
+                if(sumAllMeal==0.0f || sumAllCost == 0) mealRate.setText("0.0 TK ");
+                else {
+                    float m_rate = (float) sumAllCost / sumAllMeal;
+                    mealRate.setText(String.format("%.1f", m_rate) + " TK  ");
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
+
 
     }
 
@@ -210,6 +268,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
 
 
 }

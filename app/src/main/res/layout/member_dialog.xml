@@ -51,7 +51,7 @@
                     android:padding="15dp"
                     android:text="o.5"
                     android:textSize="20dp"
-                    android:textColor="#484A48"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"

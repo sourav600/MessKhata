@@ -40,7 +40,7 @@ public class Update_Info extends AppCompatActivity {
     private TextView updateAmount_tv;
     DatabaseReference reference;
     Member_DB member_db = new Member_DB(this);
-
+    boolean flag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,40 +79,41 @@ public class Update_Info extends AppCompatActivity {
                updateMeal_tv.setText(meal+"");
            }
        });
-//       updateBtn.setOnClickListener(new View.OnClickListener() {
-//           @Override
-//           public void onClick(View view) {
-//               String  selectedPerson = spinner.getSelectedItem().toString();
-//               if(selectedPerson.equals("Select")){
-//                   Toast.makeText(Update_Info.this, "Please select a person", Toast.LENGTH_SHORT).show();
-//               }
-//               else {
-//                    float mealAdd = 0.0f+Float.parseFloat(updateMeal_tv.getText().toString());
-//                    int amountAdd = Integer.parseInt("0"+updateAmount_tv.getText().toString());
-//
-//                   HashMap updateData = new HashMap();
-//
-//                   reference.addValueEventListener(new ValueEventListener() {
-//                       @Override
-//                       public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                           String currentUser = (String) snapshot.child("currentUser").getValue(String.class);
-//                           Toast.makeText(Update_Info.this, currentUser, Toast.LENGTH_LONG).show();
-//                           int amountFromDB = snapshot.child(currentUser).child("members").child(selectedPerson).child("money").getValue(Integer.class);
-//                           float mealFromDB = snapshot.child(currentUser).child("members").child(selectedPerson).child("meal").getValue(Float.class);
-//                           updateData.put("meal",mealAdd+mealFromDB);
-//                           updateData.put("money",amountAdd+mealAdd);
-//                           reference.child(currentUser).child("members").child(selectedPerson).updateChildren(updateData);
-//                           }
-//                       @Override
-//                       public void onCancelled(@NonNull DatabaseError error) {
-//                           Log.w("MemberDB", "Failed to read value.", error.toException());
-//                       }
-//                   });
-//
-//
-//               }
-//           }
-//       });
+       updateBtn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               String  selectedPerson = spinner.getSelectedItem().toString();
+               if(selectedPerson.equals("Select")){
+                   Toast.makeText(Update_Info.this, "Please select a person", Toast.LENGTH_SHORT).show();
+               }
+               else {
+                    float mealAdd = 0.0f+Float.parseFloat(updateMeal_tv.getText().toString());
+                    int amountAdd = Integer.parseInt("0"+updateAmount_tv.getText().toString());
+
+                   HashMap updateData = new HashMap();
+
+                   reference.addValueEventListener(new ValueEventListener() {
+                       @Override
+                       public void onDataChange(@NonNull DataSnapshot snapshot) {
+                           if(flag==true) {
+                               String currentUser = (String) snapshot.child("currentUser").getValue(String.class);
+                               int amountFromDB = snapshot.child(currentUser).child("members").child(selectedPerson).child("money").getValue(Integer.class);
+                               float mealFromDB = snapshot.child(currentUser).child("members").child(selectedPerson).child("meal").getValue(Float.class);
+                               updateData.put("meal", (mealAdd + mealFromDB));
+                               updateData.put("money", (amountAdd + amountFromDB));
+                               reference.child(currentUser).child("members").child(selectedPerson).updateChildren(updateData);
+                               Toast.makeText(Update_Info.this, "Updated successfully", Toast.LENGTH_SHORT).show();
+                               flag=false;
+                           }
+                       }
+                       @Override
+                       public void onCancelled(@NonNull DatabaseError error) {
+                           Log.w("MemberDB", "Failed to read value.", error.toException());
+                       }
+                   });
+               }
+           }
+       });
     }
 
     //fill spinner from database

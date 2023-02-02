@@ -99,21 +99,21 @@
             android:weightSum="2"
             >
             <TextView
-                android:layout_weight="1.4"
+                android:layout_weight="1.2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text=" Total Balance :"
                 android:textColor="@color/black"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:gravity="left"
                 android:layout_gravity="center"
                 android:textStyle="normal"/>
             <TextView
                 android:id="@+id/TotalBalanceId"
-                android:layout_weight=".6"
+                android:layout_weight=".8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:hint="0 TK  "
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -130,17 +130,17 @@
             android:weightSum="2"
             >
             <TextView
-                android:layout_weight="1.4"
+                android:layout_weight="1.2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text=" Total Cost : "
                 android:textColor="@color/black"
                 android:layout_gravity="center"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:textStyle="normal"/>
             <TextView
                 android:id="@+id/TotalCostId"
-                android:layout_weight=".6"
+                android:layout_weight=".8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="22sp"
@@ -160,20 +160,20 @@
             android:weightSum="2"
             >
             <TextView
-                android:layout_weight="1.4"
+                android:layout_weight="1.2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text=" Total Meal : "
                 android:layout_gravity="center"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:textColor="@color/black"
                 android:textStyle="normal"/>
             <TextView
                 android:id="@+id/TotalMealId"
-                android:layout_weight=".6"
+                android:layout_weight=".8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:hint="0.00  "
                 android:layout_gravity="center"
                 android:textColor="@color/black"
@@ -190,20 +190,20 @@
             android:weightSum="2"
             >
             <TextView
-                android:layout_weight="1.4"
+                android:layout_weight="1.2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text=" Current Balance : "
                 android:layout_gravity="center"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:textColor="@color/black"
                 android:textStyle="normal"/>
             <TextView
                 android:id="@+id/RemainingBalanceId"
-                android:layout_weight=".6"
+                android:layout_weight=".8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:textColor="@color/black"
                 android:layout_gravity="center"
                 android:hint="0 TK  "
@@ -221,21 +221,21 @@
             android:weightSum="2"
             >
             <TextView
-                android:layout_weight="1.4"
+                android:layout_weight="1.2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text=" Meal Rate : "
                 android:layout_gravity="center"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:textColor="@color/black"
                 android:textStyle="normal"/>
             <TextView
                 android:id="@+id/mealRateId"
-                android:layout_weight=".6"
+                android:layout_weight=".8"
                 android:layout_width="0dp"
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:textColor="@color/black"
                 android:hint="0 TK  "
                 android:gravity="left"

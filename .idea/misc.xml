@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/border_box.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/border_box2.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/logout.xml" value="0.1725" />
+        <entry key="app/src/main/res/layout/activity_add_cost.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/activity_costpage.xml" value="0.3098958333333333" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_member_page.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/activity_update_info.xml" value="0.25" />
@@ -14,7 +17,8 @@
         <entry key="app/src/main/res/layout/member_dialog.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/member_layout.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/spinner_item.xml" value="0.25052083333333336" />
-        <entry key="app/src/main/res/menu/navigation_menu.xml" value="0.25052083333333336" />
+        <entry key="app/src/main/res/layout/warning_dialog.xml" value="0.24947916666666667" />
+        <entry key="app/src/main/res/menu/navigation_menu.xml" value="0.25" />
       </map>
     </option>
   </component>

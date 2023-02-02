@@ -55,7 +55,6 @@ public class MemberAdapterClass extends RecyclerView.Adapter<MemberAdapterClass.
         holder.Deposit.setText(memberModel.getMoney()+" TK");
         holder.Meal.setText(memberModel.getMeal()+"");
 
-
         member_db = new Member_DB(context);
         cost_db = new Cost_DB(context);
         //set current status of a member
