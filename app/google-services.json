@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "158611303047",
-    "firebase_url": "https://messbook-6758d-default-rtdb.firebaseio.com",
-    "project_id": "messbook-6758d",
-    "storage_bucket": "messbook-6758d.appspot.com"
+    "project_number": "175258054226",
+    "firebase_url": "https://messkhata-a5442-default-rtdb.firebaseio.com",
+    "project_id": "messkhata-a5442",
+    "storage_bucket": "messkhata-a5442.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:158611303047:android:4f2d62dd4668adb658a622",
+        "mobilesdk_app_id": "1:175258054226:android:3bebffa0153fa9d010398b",
         "android_client_info": {
           "package_name": "com.example.messbook"
         }
       },
       "oauth_client": [
         {
-          "client_id": "158611303047-1qvq1rkgp0g137uctatdj720e042j53e.apps.googleusercontent.com",
+          "client_id": "175258054226-e4n51nr5ar34m5qo3dp3m95dbcn5cqn8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAAQtiSq9DgsX-5QqT--VGX5ODSw5yphak"
+          "current_key": "AIzaSyBg1kdpqhiHlvUY3nXeQ14ZshC3cvQKIec"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "158611303047-1qvq1rkgp0g137uctatdj720e042j53e.apps.googleusercontent.com",
+              "client_id": "175258054226-e4n51nr5ar34m5qo3dp3m95dbcn5cqn8.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

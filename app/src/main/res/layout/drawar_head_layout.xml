@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/ButtonColor"
+        android:background="@color/appColor"
         >
 
         <ImageView
@@ -28,7 +28,7 @@
         android:layout_below="@id/drawarHeader"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#43000000"
+        android:background="@color/appColor"
         />
 
 </RelativeLayout>

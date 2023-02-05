@@ -38,7 +38,7 @@ public class MemberPage extends AppCompatActivity {
         //change action bar color
         ActionBar actionBar;
         actionBar = getSupportActionBar();
-        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#54C0F1"));
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#1DB7AE"));
         actionBar.setBackgroundDrawable(colorDrawable);
 
         memberFloatingBtn = findViewById(R.id.memberFloatingBtnId);
@@ -60,8 +60,8 @@ public class MemberPage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
-                String currentUser = snapshot.child("currentUser").getValue(String.class);
-                for(DataSnapshot itemSnapshot : snapshot.child(currentUser).child("members").getChildren()){
+                //String currentUser = snapshot.child("currentUser").getValue(String.class);
+                for(DataSnapshot itemSnapshot : snapshot.child("members").getChildren()){
                     MemberModel memberModel = itemSnapshot.getValue(MemberModel.class);
                     list.add(memberModel);
                 }

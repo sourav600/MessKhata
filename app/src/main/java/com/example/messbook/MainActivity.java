@@ -31,6 +31,8 @@ import com.example.messbook.Database.Member_DB;
 import com.example.messbook.Model.MemberModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView TotalBalance,TotalMeal,TotalCost,RemainingBalance,mealRate;
     private Member_DB m_DB;
     private Cost_DB c_DB;
+    FirebaseAuth mAuth;
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -55,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.titleBar));
+        getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.colo2));
 
         addCostBtn =  findViewById(R.id.addCostBtnId);
         messCostBtn =  findViewById(R.id.messCostBtnId);
@@ -178,6 +181,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putBoolean("hasLoggedIn",false);
                     editor.commit();
+                    //mAuth.signOut();
                     Intent intent = new Intent(MainActivity.this, SplashScreen.class);
                     startActivity(intent);
                 }
@@ -190,7 +194,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             });
             alertDialog.show();
         }
-
         return true;
     }
 
@@ -213,14 +216,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 long sumAllAmnt=0, sumAllCost=0;
                 float sumAllMeal = 0.0f;
-                String currentUserMail = snapshot.child("currentUser").getValue(String.class);
+                //String currentUserMail = snapshot.child("currentUser").getValue(String.class);
                 //Total Amount, meal
-                for(DataSnapshot itemsnapshot : snapshot.child(currentUserMail).child("members").getChildren()){
+                for(DataSnapshot itemsnapshot : snapshot.child("members").getChildren()){
                     sumAllAmnt += (itemsnapshot.child("money").getValue(Long.class));
                     sumAllMeal += itemsnapshot.child("meal").getValue(Float.class);
                 }
                 //Total Cost
-                for(DataSnapshot itemsnapshot : snapshot.child(currentUserMail).child("costs").getChildren()){
+                for(DataSnapshot itemsnapshot : snapshot.child("costs").getChildren()){
                     sumAllCost += Long.parseLong(itemsnapshot.child("amount").getValue(String.class));
                 }
                 TotalBalance.setText(sumAllAmnt+" Tk ");
@@ -266,9 +269,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent5 = new Intent(MainActivity.this, Update_Info.class);
             startActivity(intent5);
         }
-
     }
 
-
-
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        FirebaseUser user = mAuth.getCurrentUser();
+//        String uid = user.getUid();
+//        Toast.makeText(this, "User"+uid, Toast.LENGTH_SHORT).show();
+//    }
 }

@@ -38,6 +38,7 @@
             android:textSize="16dp"
             android:backgroundTint="@color/appColor"
             android:text="NO"
+            android:textColor="@color/white"
             android:id="@+id/warningNoBtn"/>
         <Button
             android:layout_width="0dp"
@@ -46,6 +47,7 @@
             android:textSize="16dp"
             android:backgroundTint="@color/appColor"
             android:text="YES"
+            android:textColor="@color/white"
             android:id="@+id/warningYesBtn"
             />
     </LinearLayout>

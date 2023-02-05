@@ -1,10 +1,12 @@
 package com.example.messbook;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +14,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,9 +28,12 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText logInEmail, logInPass;
-    Button logInBtn;
-    TextView noAccount;
+    TextInputEditText etLoginEmail;
+    TextInputEditText etLoginPassword;
+    TextView tvRegisterHere,tvForgotPass;
+    Button btnLogin;
+    FirebaseAuth mAuth;
+
     public static String preferenceName = "MyPrefs";
 
     @Override
@@ -31,103 +41,161 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        logInEmail = findViewById(R.id.logInMailId);
-        logInPass = findViewById(R.id.logInPassId);
-        logInBtn = findViewById(R.id.logInBtnId);
-        noAccount = findViewById(R.id.noAccountId);
+        etLoginEmail = findViewById(R.id.etLoginEmail);
+        etLoginPassword = findViewById(R.id.etLoginPass);
+        tvRegisterHere = findViewById(R.id.tvRegisterHere);
+        btnLogin = findViewById(R.id.btnLoginId);
+        tvForgotPass = findViewById(R.id.tvForgotPassId);
 
+        mAuth = FirebaseAuth.getInstance();
 
-        logInBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!validMail() | !validPass()){
-
-                }
-                else {
-                    checkUser();
-                }
-            }
+        btnLogin.setOnClickListener(view -> {
+            loginUser();
         });
-
-        noAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
-                startActivity(intent);
-            }
+        tvRegisterHere.setOnClickListener(view ->{
+            startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+        });
+        tvForgotPass.setOnClickListener(view -> {
+            startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
         });
     }
 
+    private void loginUser(){
+        String email = etLoginEmail.getText().toString();
+        String password = etLoginPassword.getText().toString();
 
-    public boolean validMail(){
-        String mail = logInEmail.getText().toString();
-        if(mail.isEmpty()){
-            logInEmail.setError("Mail can't be empty");
-            return false;
-        }
-        else {
-            logInEmail.setError(null);
-            return true;
-        }
-    }
-    public boolean validPass(){
-        String password = logInPass.getText().toString();
-        if(password.isEmpty()){
-            logInPass.setError("Password can't be empty");
-            return false;
-        }
-        else {
-            logInPass.setError(null);
-            return true;
-        }
-    }
-
-    public void checkUser(){
-        String mail = logInEmail.getText().toString();
-        String pass = logInPass.getText().toString();
-
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");
-        Query checkUserData = myRef.orderByChild("email").equalTo(mail);
-
-        // Read from the database
-        checkUserData.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    logInEmail.setError(null);
-                    String passFromDB = dataSnapshot.child(mail).child("password").getValue(String.class);
-
-                    if(passFromDB.equals(pass)){
-                        logInEmail.setError(null);
-                        FirebaseDatabase.getInstance().getReference("users").child("currentUser").removeValue();
-                        FirebaseDatabase.getInstance().getReference("users").child("currentUser").setValue(mail);
-                        Toast.makeText(LoginActivity.this, "Log in successful", Toast.LENGTH_SHORT).show();
-
+        if (TextUtils.isEmpty(email)){
+            etLoginEmail.setError("Email cannot be empty");
+            etLoginEmail.requestFocus();
+        }else if (TextUtils.isEmpty(password)){
+            etLoginPassword.setError("Password cannot be empty");
+            etLoginPassword.requestFocus();
+        }else{
+            mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                        Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
                         SharedPreferences preferences = getSharedPreferences(LoginActivity.preferenceName,0);
                         SharedPreferences.Editor editor = preferences.edit();
                         editor.putBoolean("hasLoggedIn",true);
                         editor.commit();
-
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                    }
-                    else {
-                        logInPass.setError("Wrong Password");
-                        logInPass.requestFocus();
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    }else{
+                        Toast.makeText(LoginActivity.this, "Login Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
-                else {
-                    logInEmail.setError("User not found");
-                    logInEmail.requestFocus();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("TAG", "Failed to read value.", error.toException());
-            }
-        });
-
+            });
+        }
     }
+//
+//    EditText logInEmail, logInPass;
+//    Button logInBtn;
+//    TextView noAccount;
+//    public static String preferenceName = "MyPrefs";
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_login);
+//
+//        logInEmail = findViewById(R.id.logInMailId);
+//        logInPass = findViewById(R.id.logInPassId);
+//        logInBtn = findViewById(R.id.logInBtnId);
+//        noAccount = findViewById(R.id.noAccountId);
+//
+//
+//        logInBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(!validMail() | !validPass()){
+//
+//                }
+//                else {
+//                    checkUser();
+//                }
+//            }
+//        });
+//
+//        noAccount.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//    }
+//
+//
+//    public boolean validMail(){
+//        String mail = logInEmail.getText().toString();
+//        if(mail.isEmpty()){
+//            logInEmail.setError("Mail can't be empty");
+//            return false;
+//        }
+//        else {
+//            logInEmail.setError(null);
+//            return true;
+//        }
+//    }
+//    public boolean validPass(){
+//        String password = logInPass.getText().toString();
+//        if(password.isEmpty()){
+//            logInPass.setError("Password can't be empty");
+//            return false;
+//        }
+//        else {
+//            logInPass.setError(null);
+//            return true;
+//        }
+//    }
+//
+//    public void checkUser(){
+//        String mail = logInEmail.getText().toString();
+//        String pass = logInPass.getText().toString();
+//
+//        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");
+//        Query checkUserData = myRef.orderByChild("email").equalTo(mail);
+//
+//        // Read from the database
+//        checkUserData.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                if(dataSnapshot.exists()){
+//                    logInEmail.setError(null);
+//                    String passFromDB = dataSnapshot.child(mail).child("password").getValue(String.class);
+//
+//                    if(passFromDB.equals(pass)){
+//                        logInEmail.setError(null);
+//                        //FirebaseDatabase.getInstance().getReference("users").child("currentUser").removeValue();
+//                        //FirebaseDatabase.getInstance().getReference("users").child("currentUser").setValue(mail);
+//                        Toast.makeText(LoginActivity.this, "Log in successful", Toast.LENGTH_SHORT).show();
+//
+//                        SharedPreferences preferences = getSharedPreferences(LoginActivity.preferenceName,0);
+//                        SharedPreferences.Editor editor = preferences.edit();
+//                        editor.putBoolean("hasLoggedIn",true);
+//                        editor.commit();
+//
+//                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                        startActivity(intent);
+//                    }
+//                    else {
+//                        logInPass.setError("Wrong Password");
+//                        logInPass.requestFocus();
+//                    }
+//                }
+//                else {
+//                    logInEmail.setError("User not found");
+//                    logInEmail.requestFocus();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError error) {
+//                // Failed to read value
+//                Log.w("TAG", "Failed to read value.", error.toException());
+//            }
+//        });
+//
+//    }
 }

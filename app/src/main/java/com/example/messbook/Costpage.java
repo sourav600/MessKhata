@@ -40,7 +40,7 @@ public class Costpage extends AppCompatActivity {
         //change action bar color
         ActionBar actionBar;
         actionBar = getSupportActionBar();
-        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#54C0F1"));
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#1DB7AE"));
         actionBar.setBackgroundDrawable(colorDrawable);
 
         costFloatingBtn = findViewById(R.id.costFloatingBtnId);
@@ -61,8 +61,8 @@ public class Costpage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
-                String currentUser = snapshot.child("currentUser").getValue(String.class);
-                for(DataSnapshot itemSnapshot : snapshot.child(currentUser).child("costs").getChildren()){
+                //String currentUser = snapshot.child("currentUser").getValue(String.class);
+                for(DataSnapshot itemSnapshot : snapshot.child("costs").getChildren()){
                     CostModel costModel = itemSnapshot.getValue(CostModel.class);
                     list.add(costModel);
                 }

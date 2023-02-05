@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/ButtonColor"
+    android:background="@color/appColor"
     android:gravity="center"
     tools:context=".Update_Info"
     >
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:text="Update Data"
             android:textSize="24dp"
-            android:textColor="@color/ButtonColor"
+            android:textColor="@color/appColor"
             android:layout_gravity="center"
             android:textStyle="bold"
             />
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
                 android:text="Select Person : "
-                android:textColor="@color/black"
+                android:textColor="@color/appColor"
                 android:textSize="18dp"
                 android:layout_gravity="center"
                 android:gravity="right"
@@ -48,7 +48,7 @@
                 android:padding="20dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/appColor"
                 />
         </LinearLayout>
 
@@ -61,7 +61,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Add Meal : "
-                android:textColor="#484A48"
+                android:textColor="@color/appColor"
                 android:textSize="18dp"
                 android:layout_weight="0.8"
                 android:padding="10dp"
@@ -101,7 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/incrementMealId"
-                    android:backgroundTint="#4CAF50"
+                    android:backgroundTint="#07750B"
                     android:src="@drawable/ic_baseline_add_24"/>
             </LinearLayout>
 
@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
                 android:text="Add Money : "
-                android:textColor="@color/black"
+                android:textColor="@color/appColor"
                 android:textSize="18dp"
                 android:padding="10dp"
                 android:gravity="right"
@@ -130,7 +130,7 @@
                 android:background="@drawable/border_box"
                 android:inputType="numberDecimal"
                 android:padding="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/appColor"
                 android:layout_marginLeft="10dp"
                 android:hint="Add Money"/>
         </LinearLayout>
@@ -139,7 +139,7 @@
             android:id="@+id/updateBtnId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/ButtonColor"
+            android:backgroundTint="@color/appColor"
             android:text="Update"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
@@ -147,7 +147,7 @@
             android:layout_marginLeft="50dp"
             android:padding="15dp"
             android:textSize="20dp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             />
     </LinearLayout>
 </LinearLayout>

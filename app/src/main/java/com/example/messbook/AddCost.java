@@ -47,7 +47,7 @@ public class AddCost extends AppCompatActivity {
         //change action bar color
         ActionBar actionBar;
         actionBar = getSupportActionBar();
-        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#54C0F1"));
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#1DB7AE"));
         actionBar.setBackgroundDrawable(colorDrawable);
 
         costDate = findViewById(R.id.costDate_Id);
@@ -110,8 +110,8 @@ public class AddCost extends AppCompatActivity {
                         reference.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                String currentUserMail = snapshot.child("currentUser").getValue(String.class);
-                                DatabaseReference myref = FirebaseDatabase.getInstance().getReference("users").child(currentUserMail).child("costs").child(costDate.getText().toString());
+                                //String currentUserMail = snapshot.child("currentUser").getValue(String.class);
+                                DatabaseReference myref = FirebaseDatabase.getInstance().getReference("users").child("costs").child(costDate.getText().toString());
                                 myref.setValue(model);
                             }
                             @Override
@@ -142,8 +142,8 @@ public class AddCost extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String currentUserMail = snapshot.child("currentUser").getValue(String.class);
-                for(DataSnapshot itemSanpshot : snapshot.child(currentUserMail).child("members").getChildren()){
+                //String currentUserMail = snapshot.child("currentUser").getValue(String.class);
+                for(DataSnapshot itemSanpshot : snapshot.child("members").getChildren()){
                     arrayList.add(itemSanpshot.child("name").getValue(String.class));
                 }
             }

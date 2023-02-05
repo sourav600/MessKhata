@@ -50,7 +50,7 @@ public class Update_Info extends AppCompatActivity {
         //change action bar color
         ActionBar actionBar;
         actionBar = getSupportActionBar();
-        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#54C0F1"));
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#1DB7AE"));
         actionBar.setBackgroundDrawable(colorDrawable);
 
 
@@ -96,12 +96,12 @@ public class Update_Info extends AppCompatActivity {
                        @Override
                        public void onDataChange(@NonNull DataSnapshot snapshot) {
                            if(flag==true) {
-                               String currentUser = (String) snapshot.child("currentUser").getValue(String.class);
-                               int amountFromDB = snapshot.child(currentUser).child("members").child(selectedPerson).child("money").getValue(Integer.class);
-                               float mealFromDB = snapshot.child(currentUser).child("members").child(selectedPerson).child("meal").getValue(Float.class);
+                               //String currentUser = (String) snapshot.child("currentUser").getValue(String.class);
+                               int amountFromDB = snapshot.child("members").child(selectedPerson).child("money").getValue(Integer.class);
+                               float mealFromDB = snapshot.child("members").child(selectedPerson).child("meal").getValue(Float.class);
                                updateData.put("meal", (mealAdd + mealFromDB));
                                updateData.put("money", (amountAdd + amountFromDB));
-                               reference.child(currentUser).child("members").child(selectedPerson).updateChildren(updateData);
+                               reference.child("members").child(selectedPerson).updateChildren(updateData);
                                Toast.makeText(Update_Info.this, "Updated successfully", Toast.LENGTH_SHORT).show();
                                flag=false;
                            }
@@ -125,8 +125,8 @@ public class Update_Info extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String currentUserMail = snapshot.child("currentUser").getValue(String.class);
-                for(DataSnapshot itemSanpshot : snapshot.child(currentUserMail).child("members").getChildren()){
+                //String currentUserMail = snapshot.child("currentUser").getValue(String.class);
+                for(DataSnapshot itemSanpshot : snapshot.child("members").getChildren()){
                     arrayList.add(itemSanpshot.child("name").getValue(String.class));
                 }
             }

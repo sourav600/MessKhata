@@ -7,14 +7,13 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/updateMemberNameId"
             android:text="Update List"
             android:textSize="24dp"
-            android:textColor="#329ACC"
+            android:textColor="@color/appColor"
             android:gravity="center"
             android:layout_marginBottom="7dp"
             android:textStyle="bold"
@@ -61,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/incrementMealId"
                     android:src="@drawable/ic_baseline_add_24"
-                    app:backgroundTint="#2FF437"/>
+                    app:backgroundTint="#07750B"/>
             </LinearLayout>
 
 
@@ -83,14 +82,14 @@
             android:id="@+id/updateBtnId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/ButtonColor"
+            android:backgroundTint="@color/appColor"
             android:text="ADd"
             android:layout_gravity="right"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             android:padding="15dp"
             android:textSize="20dp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             />
 
 </LinearLayout>

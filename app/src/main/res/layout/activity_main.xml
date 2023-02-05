@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/colo3"
     android:id="@+id/drawer_layout"
     tools:context=".MainActivity"
     >
@@ -18,7 +18,7 @@
             android:id="@+id/appBar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:background="@color/ButtonColor"
+            android:background="@color/colo2"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
             android:paddingStart="15dp"
@@ -30,7 +30,7 @@
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_menu"/>
+                android:src="@drawable/ic_menu" />
 
             <TextView
                 android:id="@+id/textTitle"
@@ -39,10 +39,9 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="15dp"
                 android:text="Dashboard"
-                android:textColor="@color/white"
+                android:textColor="@color/colo3"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
         </LinearLayout>
     </RelativeLayout>
 
@@ -83,7 +82,7 @@
             android:layout_height="wrap_content"
             android:text="Overview"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/colo3"
             android:layout_marginTop="5dp"
             android:textSize="22dp"
             android:textStyle="bold"/>
@@ -95,7 +94,6 @@
             android:padding="3dp"
             android:gravity="center"
             android:layout_margin="1dp"
-            android:background="@drawable/border_box2"
             android:weightSum="2"
             >
             <TextView
@@ -103,7 +101,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text=" Total Balance :"
-                android:textColor="@color/black"
+                android:textColor="@color/colo3"
                 android:textSize="18sp"
                 android:gravity="left"
                 android:layout_gravity="center"
@@ -115,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="22sp"
                 android:hint="0 TK  "
-                android:textColor="@color/black"
+                android:textColor="@color/colo3"
                 android:textStyle="bold"
                 android:gravity="left"/>
         </LinearLayout>
@@ -125,7 +123,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
             android:orientation="horizontal"
-            android:background="@drawable/border_box2"
             android:padding="3dp"
             android:weightSum="2"
             >
@@ -134,7 +131,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text=" Total Cost : "
-                android:textColor="@color/black"
+                android:textColor="@color/colo3"
                 android:layout_gravity="center"
                 android:textSize="18sp"
                 android:textStyle="normal"/>
@@ -145,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="22sp"
                 android:layout_gravity="center"
-                android:textColor="@color/black"
+                android:textColor="@color/colo3"
                 android:hint="0 TK  "
                 android:gravity="left"
                 android:textStyle="bold"/>
@@ -154,7 +151,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/border_box2"
             android:padding="3dp"
             android:layout_margin="1dp"
             android:weightSum="2"
@@ -166,7 +162,7 @@
                 android:text=" Total Meal : "
                 android:layout_gravity="center"
                 android:textSize="18sp"
-                android:textColor="@color/black"
+                android:textColor="@color/colo3"
                 android:textStyle="normal"/>
             <TextView
                 android:id="@+id/TotalMealId"
@@ -176,7 +172,7 @@
                 android:textSize="22sp"
                 android:hint="0.00  "
                 android:layout_gravity="center"
-                android:textColor="@color/black"
+                android:textColor="@color/colo3"
                 android:gravity="left"
                 android:textStyle="bold"/>
         </LinearLayout>
@@ -184,7 +180,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/border_box2"
             android:padding="3dp"
             android:layout_margin="1dp"
             android:weightSum="2"
@@ -196,7 +191,7 @@
                 android:text=" Current Balance : "
                 android:layout_gravity="center"
                 android:textSize="18sp"
-                android:textColor="@color/black"
+                android:textColor="@color/colo3"
                 android:textStyle="normal"/>
             <TextView
                 android:id="@+id/RemainingBalanceId"
@@ -204,7 +199,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="22sp"
-                android:textColor="@color/black"
+                android:textColor="@color/colo3"
                 android:layout_gravity="center"
                 android:hint="0 TK  "
                 android:gravity="left"
@@ -215,7 +210,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/border_box2"
             android:padding="3dp"
             android:layout_margin="1dp"
             android:weightSum="2"
@@ -227,7 +221,7 @@
                 android:text=" Meal Rate : "
                 android:layout_gravity="center"
                 android:textSize="18sp"
-                android:textColor="@color/black"
+                android:textColor="@color/colo3"
                 android:textStyle="normal"/>
             <TextView
                 android:id="@+id/mealRateId"
@@ -236,7 +230,7 @@
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:textSize="22sp"
-                android:textColor="@color/black"
+                android:textColor="@color/colo3"
                 android:hint="0 TK  "
                 android:gravity="left"
                 android:textStyle="bold"/>
@@ -258,13 +252,12 @@
             android:layout_height="150dp"
             android:layout_row="0"
             android:layout_column="0"
-            android:backgroundTint="@color/ButtonColor"
+            android:backgroundTint="@color/colo2"
             android:layout_gravity="fill"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="10dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp">
+            app:cardCornerRadius="10dp">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -282,10 +275,9 @@
                     android:textStyle="bold"
                     android:fontFamily="monospace"
                     android:textSize="16dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/colo3"
                     android:textAlignment="center"
                     />
-
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -295,14 +287,13 @@
             android:layout_height="150dp"
             android:id="@+id/messCostBtnId"
             android:layout_row="0"
-            android:backgroundTint="@color/ButtonColor"
+            android:backgroundTint="@color/colo2"
             android:layout_column="1"
             android:layout_gravity="fill"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="10dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp">
+            app:cardCornerRadius="10dp">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -312,7 +303,6 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-
                     android:src="@drawable/ic_baseline_monetization_on_24"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -320,12 +310,10 @@
                     android:text="Cost"
                     android:textStyle="bold"
                     android:textSize="16dp"
-
                     android:fontFamily="monospace"
-                    android:textColor="@color/black"
+                    android:textColor="@color/colo3"
                     android:textAlignment="center"
                     />
-
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -338,11 +326,10 @@
             android:layout_column="0"
             android:layout_gravity="fill"
             android:layout_rowWeight="1"
-            android:backgroundTint="@color/ButtonColor"
+            android:backgroundTint="@color/colo2"
             android:layout_columnWeight="1"
             android:layout_margin="10dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp">
+            app:cardCornerRadius="10dp">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -360,12 +347,10 @@
                     android:textStyle="bold"
                     android:textSize="16dp"
                     android:fontFamily="monospace"
-                    android:textColor="@color/black"
+                    android:textColor="@color/colo3"
                     android:textAlignment="center"
                     />
-
             </LinearLayout>
-
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -374,13 +359,12 @@
             android:id="@+id/addCostBtnId"
             android:layout_row="1"
             android:layout_column="1"
-            android:backgroundTint="@color/ButtonColor"
+            android:backgroundTint="@color/colo2"
             android:layout_gravity="fill"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="10dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp">
+            app:cardCornerRadius="10dp">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -399,23 +383,22 @@
                     android:textAlignment="center"
                     android:fontFamily="monospace"
                     android:textSize="16dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/colo3"
                     />
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-
     </GridLayout>
-
+        
         <Button
             android:id="@+id/updateInfoBtnId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/ButtonColor"
+            android:backgroundTint="@color/colo2"
             android:layout_gravity="center"
-            android:text="Update"
-            android:textColor="@color/black"
+            android:text="Update data"
+            android:textColor="@color/colo3"
             android:padding="10dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
@@ -425,10 +408,5 @@
 
     </LinearLayout>
 </ScrollView>
-
-
-
-
-
 
 </androidx.drawerlayout.widget.DrawerLayout>

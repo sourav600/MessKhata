@@ -37,7 +37,7 @@ public class AddMember extends AppCompatActivity {
         //change action bar color
         ActionBar actionBar;
         actionBar = getSupportActionBar();
-        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#54C0F1"));
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#1DB7AE"));
         actionBar.setBackgroundDrawable(colorDrawable);
 
         member_db = new Member_DB(AddMember.this);
@@ -71,8 +71,8 @@ public class AddMember extends AppCompatActivity {
                         reference.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                String currentUserMail = snapshot.child("currentUser").getValue(String.class);
-                                DatabaseReference myref = FirebaseDatabase.getInstance().getReference("users").child(currentUserMail).child("members").child(newName);
+                                //String currentUserMail = snapshot.child("currentUser").getValue(String.class);
+                                DatabaseReference myref = FirebaseDatabase.getInstance().getReference("users").child("members").child(newName);
                                 myref.setValue(model);
                             }
                             @Override
