@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="125dp">
+    android:layout_height="150dp">
 
     <LinearLayout
         android:id="@+id/drawarHeader"
@@ -13,13 +13,11 @@
 
         <ImageView
             android:layout_marginLeft="10dp"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/app_logo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/appimage"
             android:layout_gravity="center_horizontal"
             />
-
-
 
     </LinearLayout>
 
@@ -27,7 +25,7 @@
         android:elevation="5dp"
         android:layout_below="@id/drawarHeader"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="50dp"
         android:background="@color/appColor"
         />
 

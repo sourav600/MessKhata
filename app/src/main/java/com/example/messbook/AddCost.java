@@ -3,9 +3,11 @@ package com.example.messbook;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -49,6 +51,7 @@ public class AddCost extends AppCompatActivity {
         actionBar = getSupportActionBar();
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#1DB7AE"));
         actionBar.setBackgroundDrawable(colorDrawable);
+        getWindow().setStatusBarColor(ContextCompat.getColor(AddCost.this, R.color.appColor));
 
         costDate = findViewById(R.id.costDate_Id);
         costAmount = findViewById(R.id.costAmountId);
@@ -84,6 +87,10 @@ public class AddCost extends AppCompatActivity {
             }
         });
 
+        //get username from SignUp activity
+        SharedPreferences sharedPreferences = getSharedPreferences("shared_preferences", MODE_PRIVATE);
+        String currentuser = sharedPreferences.getString("user", "default_value");
+
         //send user data to cost model
         addCostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,8 +117,7 @@ public class AddCost extends AppCompatActivity {
                         reference.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                //String currentUserMail = snapshot.child("currentUser").getValue(String.class);
-                                DatabaseReference myref = FirebaseDatabase.getInstance().getReference("users").child("costs").child(costDate.getText().toString());
+                                DatabaseReference myref = FirebaseDatabase.getInstance().getReference("users").child(currentuser).child("costs").child(costDate.getText().toString());
                                 myref.setValue(model);
                             }
                             @Override
@@ -121,7 +127,7 @@ public class AddCost extends AppCompatActivity {
                         });
                         Toast.makeText(AddCost.this, "Cost Added Successfully!", Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(AddCost.this, MainActivity.class);
+                        Intent intent = new Intent(AddCost.this, NavigationActivity.class);
                         startActivity(intent);
                     }
                 }
@@ -134,6 +140,9 @@ public class AddCost extends AppCompatActivity {
 
     //fill spinner from database
     public void fillSpinner() {
+        //get username from SignUp activity
+        SharedPreferences sharedPreferences = getSharedPreferences("shared_preferences", MODE_PRIVATE);
+        String currentuser = sharedPreferences.getString("user", "default_value");
         member_db = new Member_DB(this);
         ArrayList<String> arrayList = new ArrayList<String>();
         arrayList.add("Select");
@@ -142,8 +151,7 @@ public class AddCost extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //String currentUserMail = snapshot.child("currentUser").getValue(String.class);
-                for(DataSnapshot itemSanpshot : snapshot.child("members").getChildren()){
+                for(DataSnapshot itemSanpshot : snapshot.child(currentuser).child("members").getChildren()){
                     arrayList.add(itemSanpshot.child("name").getValue(String.class));
                 }
             }

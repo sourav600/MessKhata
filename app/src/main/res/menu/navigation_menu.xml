@@ -15,6 +15,7 @@
 
                 <item
                     android:id="@+id/nav_C_listId"
+
                     android:icon="@drawable/ic_baseline_monetization_on_24"
                     android:title="Cost List" />
 

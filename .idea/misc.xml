@@ -5,8 +5,12 @@
       <map>
         <entry key="app/src/main/res/drawable/border_box.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/border_box2.xml" value="0.1725" />
+        <entry key="app/src/main/res/drawable/calander.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/details.xml" value="0.1615" />
+        <entry key="app/src/main/res/drawable/dollar.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1715" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_chart_24.xml" value="0.1055" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.163" />
         <entry key="app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.1715" />
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_monetization_on_24.xml" value="0.1055" />
@@ -15,23 +19,26 @@
         <entry key="app/src/main/res/drawable/ic_baseline_person_add_alt_1_24.xml" value="0.1055" />
         <entry key="app/src/main/res/drawable/ic_menu.xml" value="0.2335" />
         <entry key="app/src/main/res/drawable/logout.xml" value="0.1725" />
-        <entry key="app/src/main/res/layout/activity_add_cost.xml" value="0.25052083333333336" />
-        <entry key="app/src/main/res/layout/activity_add_member.xml" value="0.28790028889973956" />
-        <entry key="app/src/main/res/layout/activity_costpage.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/drawable/rectangle_box.xml" value="0.1715" />
+        <entry key="app/src/main/res/drawable/user.xml" value="0.1615" />
+        <entry key="app/src/main/res/layout/activity_add_cost.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_add_member.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_costpage.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_member_page.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/activity_navigation.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/activity_update_info.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/cost_layout.xml" value="0.25052083333333336" />
+        <entry key="app/src/main/res/layout/cost_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/drawar_head_layout.xml" value="0.14673913043478262" />
         <entry key="app/src/main/res/layout/member_dialog.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/member_layout.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/spinner_item.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/warning_dialog.xml" value="0.24947916666666667" />
-        <entry key="app/src/main/res/menu/navigation_menu.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/navigation_menu.xml" value="0.1" />
       </map>
     </option>
   </component>

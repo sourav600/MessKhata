@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -32,7 +33,7 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        getWindow().setStatusBarColor(ContextCompat.getColor(SignUpActivity.this, R.color.titleBar));
+        getWindow().setStatusBarColor(ContextCompat.getColor(SignUpActivity.this, R.color.appColor));
 
 
         etRegEmail = findViewById(R.id.etRegEmail);
@@ -69,7 +70,11 @@ public class SignUpActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
                         LogInHelper helper = new LogInHelper(username,email,password);
-                        reference.child(username).setValue(helper);
+                        reference.child(username).child("login_Info").setValue(helper);
+                        SharedPreferences sharedPreferences = getSharedPreferences("shared_preferences", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("user", username.replace(".",""));
+                        editor.apply();
                         Toast.makeText(SignUpActivity.this, "Resistration successful", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                     }else{
@@ -79,51 +84,4 @@ public class SignUpActivity extends AppCompatActivity {
             });
         }
     }
-//    EditText signUpName, signUpMail, signUpPass;
-//    Button signUpBtn;
-//    TextView alreadyAccount;
-//    FirebaseDatabase firebaseDatabase;
-//    DatabaseReference reference;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_sign_up);
-//
-//        signUpName = findViewById(R.id.signUpNameId);
-//        signUpMail = findViewById(R.id.signUpEmailId);
-//        signUpPass = findViewById(R.id.signUpPassId);
-//        signUpBtn = findViewById(R.id.signUpBtnId);
-//        alreadyAccount = findViewById(R.id.alreadyAccountId);
-//
-//        signUpBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                firebaseDatabase = FirebaseDatabase.getInstance();
-//                reference = firebaseDatabase.getReference("users");
-//
-//                String name = signUpName.getText().toString();
-//                String email = signUpMail.getText().toString();
-//                String password = signUpPass.getText().toString();
-//                if(name.isEmpty() | email.isEmpty() | password.isEmpty()){
-//                    Toast.makeText(SignUpActivity.this, "Fill all option!", Toast.LENGTH_SHORT).show();
-//                }
-//
-//                else {
-//                    LogInHelper helper = new LogInHelper(name, email, password);
-//                    reference.child(email).setValue(helper);
-//                    Toast.makeText(SignUpActivity.this, "Sign Up successfully!", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-//                    startActivity(intent);
-//                }
-//            }
-//        });
-//        alreadyAccount.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//    }
 }

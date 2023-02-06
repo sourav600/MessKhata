@@ -3,8 +3,10 @@ package com.example.messbook;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -39,6 +41,7 @@ public class AddMember extends AppCompatActivity {
         actionBar = getSupportActionBar();
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#1DB7AE"));
         actionBar.setBackgroundDrawable(colorDrawable);
+        getWindow().setStatusBarColor(ContextCompat.getColor(AddMember.this, R.color.appColor));
 
         member_db = new Member_DB(AddMember.this);
 
@@ -47,6 +50,9 @@ public class AddMember extends AppCompatActivity {
         meal_et = (EditText) findViewById(R.id.addMealId);
         addNewMemberBtn = (Button) findViewById(R.id.addNewMemberBtnId);
 
+        //get username from SignUp activity
+        SharedPreferences sharedPreferences = getSharedPreferences("shared_preferences", MODE_PRIVATE);
+        String currentuser = sharedPreferences.getString("user", "default_value");
 
         addNewMemberBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,8 +77,7 @@ public class AddMember extends AppCompatActivity {
                         reference.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                //String currentUserMail = snapshot.child("currentUser").getValue(String.class);
-                                DatabaseReference myref = FirebaseDatabase.getInstance().getReference("users").child("members").child(newName);
+                                DatabaseReference myref = FirebaseDatabase.getInstance().getReference("users").child(currentuser).child("members").child(newName);
                                 myref.setValue(model);
                             }
                             @Override
@@ -84,7 +89,7 @@ public class AddMember extends AppCompatActivity {
 
 
                         //go to first page
-                        Intent intent2 = new Intent(AddMember.this, MainActivity.class);
+                        Intent intent2 = new Intent(AddMember.this, NavigationActivity.class);
                         startActivity(intent2);
                     }
                 }

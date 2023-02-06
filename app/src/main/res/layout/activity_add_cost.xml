@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colo2"
-    android:padding="20dp"
+    android:background="@color/appColor"
     android:gravity="center"
+    android:padding="20dp"
     tools:context=".AddCost">
 
     <LinearLayout
@@ -22,9 +22,9 @@
             android:layout_height="wrap_content"
             android:text="Add new Cost"
             android:layout_gravity="center"
-            android:paddingBottom="20dp"
             android:textSize="26dp"
-            android:textColor="@color/colo2"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/appColor"
             android:textStyle="bold"
             />
 
@@ -32,28 +32,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="35dp"
             android:padding="10dp"
+            android:layout_marginBottom="7dp"
             android:weightSum="2">
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Select Person : "
-                android:textColor="@color/colo2"
+                android:layout_weight=".8"
+                android:text="Person: "
+                android:textColor="@color/appColor"
                 android:textSize="18dp"
                 android:layout_gravity="center"
-                android:gravity="left"
+                android:gravity="center"
                 />
             <Spinner
                 android:id="@+id/memberSpinner2"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:padding="20dp"
+                android:padding="10dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:backgroundTint="@color/colo2"
+                android:backgroundTint="@color/appColor"
                 />
         </LinearLayout>
 
@@ -62,8 +61,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
             android:background="@drawable/border_box"
             android:weightSum="2">
         <TextView
@@ -75,8 +72,8 @@
             android:hint="Date"
             android:gravity="left"
             android:layout_gravity="center"
-            android:textColorHint="@color/colo2"
-            android:textColor="@color/colo2"
+            android:textColorHint="@color/appColor"
+            android:textColor="@color/appColor"
             android:textSize="18dp"
             />
 
@@ -87,6 +84,7 @@
             android:layout_weight=".6"
             android:drawableRight="@drawable/ic_baseline_calendar_today_24"
             android:layout_marginRight="10dp"
+            android:paddingRight="10dp"
             />
 
     </LinearLayout>
@@ -100,11 +98,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Amount"
-            android:textColorHint="@color/colo2"
-            android:textColor="@color/colo2"
+            android:textColorHint="@color/appColor"
+            android:textColor="@color/appColor"
             android:layout_marginTop="20dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
             android:inputType="numberDecimal"
             android:background="@drawable/border_box"
             android:padding="10dp"
@@ -114,11 +110,9 @@
             android:id="@+id/costDescriptionId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Description"
-            android:textColorHint="@color/colo2"
-            android:textColor="@color/colo2"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
+            android:hint="Description (optional)"
+            android:textColorHint="@color/appColor"
+            android:textColor="@color/appColor"
             android:layout_marginTop="20dp"
             android:background="@drawable/border_box"
             android:padding="10dp"
@@ -126,19 +120,19 @@
             />
         <Button
             android:id="@+id/addCost_BtnId"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add"
-            android:backgroundTint="@color/colo2"
+            android:backgroundTint="@color/appColor"
             android:layout_marginTop="20dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:textColor="@color/white"
             android:textSize="20dp"
             android:layout_gravity="center"
-            android:textStyle="bold"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:paddingBottom="15dp"
-            android:paddingTop="15dp"/>
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textStyle="bold"/>
     </LinearLayout>
 
 

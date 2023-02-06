@@ -3,8 +3,10 @@ package com.example.messbook;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +37,7 @@ public class Update_Info extends AppCompatActivity {
 
     private float meal = 0.5f;
     private FloatingActionButton incrementMeal, decrementMeal;
-    private TextView updateMeal_tv;
+    private EditText updateMeal_tv;
     private Spinner spinner;
     private Button updateBtn;
     private TextView updateAmount_tv;
@@ -52,13 +55,15 @@ public class Update_Info extends AppCompatActivity {
         actionBar = getSupportActionBar();
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#1DB7AE"));
         actionBar.setBackgroundDrawable(colorDrawable);
+        getWindow().setStatusBarColor(ContextCompat.getColor(Update_Info.this, R.color.appColor));
+
 
 
         incrementMeal = findViewById(R.id.incrementMealId);
         decrementMeal = findViewById(R.id.decrementMealID);
-        updateMeal_tv = (TextView) findViewById(R.id.updateMealId);
-        spinner = (Spinner) findViewById(R.id.memberSpinner);
-        updateBtn = (Button) findViewById(R.id.updateBtnId);
+        updateMeal_tv = findViewById(R.id.updateMealId);
+        spinner =  findViewById(R.id.memberSpinner);
+        updateBtn =  findViewById(R.id.updateBtnId);
         updateAmount_tv = findViewById(R.id.updateAmountId);
         reference = FirebaseDatabase.getInstance().getReference("users");
 
@@ -79,6 +84,11 @@ public class Update_Info extends AppCompatActivity {
                updateMeal_tv.setText(meal+"");
            }
        });
+
+        //get username from SignUp activity
+        SharedPreferences sharedPreferences = getSharedPreferences("shared_preferences", MODE_PRIVATE);
+        String currentuser = sharedPreferences.getString("user", "default_value");
+
        updateBtn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -89,19 +99,17 @@ public class Update_Info extends AppCompatActivity {
                else {
                     float mealAdd = 0.0f+Float.parseFloat(updateMeal_tv.getText().toString());
                     int amountAdd = Integer.parseInt("0"+updateAmount_tv.getText().toString());
-
                    HashMap updateData = new HashMap();
 
                    reference.addValueEventListener(new ValueEventListener() {
                        @Override
                        public void onDataChange(@NonNull DataSnapshot snapshot) {
                            if(flag==true) {
-                               //String currentUser = (String) snapshot.child("currentUser").getValue(String.class);
-                               int amountFromDB = snapshot.child("members").child(selectedPerson).child("money").getValue(Integer.class);
-                               float mealFromDB = snapshot.child("members").child(selectedPerson).child("meal").getValue(Float.class);
+                               int amountFromDB = snapshot.child(currentuser).child("members").child(selectedPerson).child("money").getValue(Integer.class);
+                               float mealFromDB = snapshot.child(currentuser).child("members").child(selectedPerson).child("meal").getValue(Float.class);
                                updateData.put("meal", (mealAdd + mealFromDB));
                                updateData.put("money", (amountAdd + amountFromDB));
-                               reference.child("members").child(selectedPerson).updateChildren(updateData);
+                               reference.child(currentuser).child("members").child(selectedPerson).updateChildren(updateData);
                                Toast.makeText(Update_Info.this, "Updated successfully", Toast.LENGTH_SHORT).show();
                                flag=false;
                            }
@@ -121,12 +129,16 @@ public class Update_Info extends AppCompatActivity {
         ArrayList<String> arrayList = new ArrayList<String>();
         arrayList.add("Select");
         //arrayList.addAll(member_db.getMemberName()) ;
+
+        //get username from SignUp activity
+        SharedPreferences sharedPreferences = getSharedPreferences("shared_preferences", MODE_PRIVATE);
+        String currentuser = sharedPreferences.getString("user", "default_value");
+
         DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("users");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //String currentUserMail = snapshot.child("currentUser").getValue(String.class);
-                for(DataSnapshot itemSanpshot : snapshot.child("members").getChildren()){
+                for(DataSnapshot itemSanpshot : snapshot.child(currentuser).child("members").getChildren()){
                     arrayList.add(itemSanpshot.child("name").getValue(String.class));
                 }
             }
