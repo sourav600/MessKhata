@@ -19,8 +19,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@color/white"
-        app:itemTextColor="@color/appColor"
-        android:layout_margin="1dp"
         android:layout_gravity="start"
         app:headerLayout="@layout/drawar_head_layout"
         app:menu="@menu/navigation_menu" />

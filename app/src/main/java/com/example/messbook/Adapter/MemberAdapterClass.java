@@ -1,9 +1,14 @@
 package com.example.messbook.Adapter;
 
+import static android.content.Context.MODE_PRIVATE;
 import static com.example.messbook.R.layout.member_dialog;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +24,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.messbook.Database.Cost_DB;
 import com.example.messbook.Database.Member_DB;
 import com.example.messbook.Model.MemberModel;
+import com.example.messbook.NavigationActivity;
 import com.example.messbook.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -48,65 +60,65 @@ public class MemberAdapterClass extends RecyclerView.Adapter<MemberAdapterClass.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull memberAdapterView holder, int position) {
+    public void onBindViewHolder(@NonNull memberAdapterView holder, @SuppressLint("RecyclerView") final int position) {
         MemberModel memberModel = memberModelArrayList.get(position);
         holder.Name.setText(memberModel.getName()+"");
         holder.Deposit.setText(memberModel.getMoney()+" TK");
         holder.Meal.setText(memberModel.getMeal()+"");
 
-        member_db = new Member_DB(context);
-        cost_db = new Cost_DB(context);
-        //set current status of a member
-        float T_meal = member_db.getSumOfMeal();
-        int sumAllCost = cost_db.getTotalCost();
-        float meal_rate = (sumAllCost*1.0f) / T_meal;
+//        member_db = new Member_DB(context);
+//        cost_db = new Cost_DB(context);
+//        //set current status of a member
+//        float T_meal = member_db.getSumOfMeal();
+//        int sumAllCost = cost_db.getTotalCost();
+//        float meal_rate = (sumAllCost*1.0f) / T_meal;
+//        holder.Amount.setText(String.format("%.1f",memberModel.getMoney() - (meal_rate*memberModel.getMeal()))+" ");
+
+        float meal_rate = NavigationActivity.getMealRate();
         holder.Amount.setText(String.format("%.1f",memberModel.getMoney() - (meal_rate*memberModel.getMeal()))+" ");
 
-        //click on member row recycler item
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            private float meal = 0.5f;
+        //get username from SignUp activity
+        SharedPreferences sharedPreferences = context.getSharedPreferences("shared_preferences", MODE_PRIVATE);
+        String currentuser = sharedPreferences.getString("user", "default_value");
 
+        final String user = memberModelArrayList.get(position).getName();
+        //click listener on recycler item
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View view) {
-                Dialog dialog = new Dialog(context);
-                dialog.setContentView(R.layout.member_dialog);
-                dialog.show();
-
-                FloatingActionButton incrementMeal =  dialog.findViewById(R.id.incrementMealId);
-                FloatingActionButton decrementMeal = dialog.findViewById(R.id.decrementMealID);
-                TextView updateMeal_tv = dialog.findViewById(R.id.updateMealId);
-                TextView updateAmount_tv = dialog.findViewById(R.id.updateAmountId);
-                Button updateBtn = dialog.findViewById(R.id.updateBtnId);
-
-                incrementMeal.setOnClickListener(new View.OnClickListener() {
+            public boolean onLongClick(View view) {
+                AlertDialog.Builder alertDialog  = new AlertDialog.Builder(context);
+                alertDialog.setTitle("Delete!");
+                alertDialog.setMessage("Do you want to delete this data?");
+                alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
-                        meal += 0.5;
-                        updateMeal_tv.setText(meal+"");
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(currentuser).
+                                child("members");
+                        Query query = ref.child(user);
+                        query.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                snapshot.getRef().removeValue();
+                                Toast.makeText(context, "Deleted...", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+
                     }
                 });
-                decrementMeal.setOnClickListener(new View.OnClickListener() {
+                alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
-                        meal -= 0.5;
-                        updateMeal_tv.setText(meal+"");
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
                     }
                 });
-
-
-
-
-
-//
-//                updateBtn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        member_db = new Member_DB(context);
-//                        member_db.updateMember(name, amount,meal);
-//                        Toast.makeText(context, "Information Updated !", Toast.LENGTH_SHORT).show();
-//                        dialog.dismiss();
-//                    }
-//                });
+                alertDialog.show();
+                return true;
             }
         });
     }
@@ -117,7 +129,7 @@ public class MemberAdapterClass extends RecyclerView.Adapter<MemberAdapterClass.
     }
 
 
-    public class memberAdapterView extends RecyclerView.ViewHolder{
+    public class memberAdapterView extends RecyclerView.ViewHolder {
         TextView Name,Amount,Deposit,Meal;
 
         public memberAdapterView(@NonNull View itemView) {

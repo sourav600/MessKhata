@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MessBook</string>
     <string name="Deposit">Deposit :</string>
-    <string name="mealCount">Meal Count:</string>
+    <string name="mealCount">Meal :</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string-array name="member_array">

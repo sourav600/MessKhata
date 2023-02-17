@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <LinearLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@color/appColor"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/imageMenuId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:padding="5dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_menu" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:text="Dashboard"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--    <com.google.android.material.appbar.AppBarLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content">-->
+    <!--        <androidx.appcompat.widget.Toolbar-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:background="@color/appColor"-->
+    <!--            android:id="@+id/toolBarId"/>-->
+    <!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:background="@drawable/border_box2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="20dp"
+                android:paddingTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Overview"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="5dp"
+                    android:textSize="22dp"
+                    android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="3dp"
+                    android:gravity="center"
+                    android:layout_margin="1dp"
+                    android:weightSum="2"
+                    >
+                    <TextView
+                        android:layout_weight="1.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text=" Total Balance :"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:gravity="left"
+                        android:layout_gravity="center"
+                        android:textStyle="normal"/>
+                    <TextView
+                        android:id="@+id/TotalBalanceId"
+                        android:layout_weight=".8"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="22sp"
+                        android:hint="0 TK  "
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:gravity="left"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:orientation="horizontal"
+                    android:padding="3dp"
+                    android:weightSum="2"
+                    >
+                    <TextView
+                        android:layout_weight="1.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text=" Total Cost : "
+                        android:textColor="@color/white"
+                        android:layout_gravity="center"
+                        android:textSize="18sp"
+                        android:textStyle="normal"/>
+                    <TextView
+                        android:id="@+id/TotalCostId"
+                        android:layout_weight=".8"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="22sp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white"
+                        android:hint="0 TK  "
+                        android:gravity="left"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="3dp"
+                    android:layout_margin="1dp"
+                    android:weightSum="2"
+                    >
+                    <TextView
+                        android:layout_weight="1.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text=" Total Meal : "
+                        android:layout_gravity="center"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:textStyle="normal"/>
+                    <TextView
+                        android:id="@+id/TotalMealId"
+                        android:layout_weight=".8"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="22sp"
+                        android:hint="0.00  "
+                        android:layout_gravity="center"
+                        android:textColor="@color/white"
+                        android:gravity="left"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="3dp"
+                    android:layout_margin="1dp"
+                    android:weightSum="2"
+                    >
+                    <TextView
+                        android:layout_weight="1.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text=" Current Balance : "
+                        android:layout_gravity="center"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:textStyle="normal"/>
+                    <TextView
+                        android:id="@+id/RemainingBalanceId"
+                        android:layout_weight=".8"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="22sp"
+                        android:textColor="@color/white"
+                        android:layout_gravity="center"
+                        android:hint="0 TK  "
+                        android:gravity="left"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="3dp"
+                    android:layout_margin="1dp"
+                    android:weightSum="2"
+                    >
+                    <TextView
+                        android:layout_weight="1.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text=" Meal Rate : "
+                        android:layout_gravity="center"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:textStyle="normal"/>
+                    <TextView
+                        android:id="@+id/mealRateId"
+                        android:layout_weight=".8"
+                        android:layout_width="0dp"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:textSize="22sp"
+                        android:textColor="@color/white"
+                        android:hint="0 TK  "
+                        android:gravity="left"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:layout_gravity="center_vertical"
+                android:rowCount="2"
+                android:columnCount="2">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/MessMemberBtnId"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:backgroundTint="@color/appColor"
+                    android:layout_gravity="fill"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="10dp"
+                    android:elevation="7dp"
+                    app:cardCornerRadius="10dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_gravity="center_vertical|center_horizontal">
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:src="@drawable/ic_baseline_people_alt_24"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Member List"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"
+                            android:textSize="16dp"
+                            android:textColor="@color/white"
+                            android:textAlignment="center"
+                            />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/messCostBtnId"
+                    android:layout_row="0"
+                    android:backgroundTint="@color/appColor"
+                    android:layout_column="1"
+                    android:layout_gravity="fill"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:elevation="7dp"
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="10dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_gravity="center_vertical|center_horizontal">
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:src="@drawable/ic_baseline_monetization_on_24"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cost List"
+                            android:textStyle="bold"
+                            android:textSize="16dp"
+                            android:fontFamily="monospace"
+                            android:textColor="@color/white"
+                            android:textAlignment="center"
+                            />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/AddMemberBtnId"
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:layout_gravity="fill"
+                    android:layout_rowWeight="1"
+                    android:backgroundTint="#74D5CE"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="10dp"
+                    android:elevation="7dp"
+                    app:cardCornerRadius="10dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_gravity="center_vertical|center_horizontal">
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:src="@drawable/ic_baseline_person_add_alt_1_24"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Add Member"
+                            android:textStyle="bold"
+                            android:textSize="16dp"
+                            android:fontFamily="monospace"
+                            android:textColor="@color/white"
+                            android:textAlignment="center"
+                            />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/addCostBtnId"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:backgroundTint="#74D5CE"
+                    android:layout_gravity="fill"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:elevation="7dp"
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="10dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_gravity="center_vertical|center_horizontal">
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:src="@drawable/ic_baseline_add_chart_24"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Add Cost"
+                            android:textStyle="bold"
+                            android:textAlignment="center"
+                            android:fontFamily="monospace"
+                            android:textSize="16dp"
+                            android:textColor="@color/white"
+                            />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </GridLayout>
+
+            <Button
+                android:id="@+id/updateInfoBtnId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:backgroundTint="#74D5CE"
+                android:elevation="10dp"
+                android:padding="15dp"
+                android:textAllCaps="false"
+                android:textSize="16dp"
+                android:text="Update member's data"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:cardCornerRadius="15dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

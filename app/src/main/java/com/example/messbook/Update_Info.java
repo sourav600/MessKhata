@@ -57,8 +57,6 @@ public class Update_Info extends AppCompatActivity {
         actionBar.setBackgroundDrawable(colorDrawable);
         getWindow().setStatusBarColor(ContextCompat.getColor(Update_Info.this, R.color.appColor));
 
-
-
         incrementMeal = findViewById(R.id.incrementMealId);
         decrementMeal = findViewById(R.id.decrementMealID);
         updateMeal_tv = findViewById(R.id.updateMealId);
@@ -99,7 +97,7 @@ public class Update_Info extends AppCompatActivity {
                else {
                     float mealAdd = 0.0f+Float.parseFloat(updateMeal_tv.getText().toString());
                     int amountAdd = Integer.parseInt("0"+updateAmount_tv.getText().toString());
-                   HashMap updateData = new HashMap();
+                   //HashMap updateData = new HashMap();
 
                    reference.addValueEventListener(new ValueEventListener() {
                        @Override
@@ -107,9 +105,11 @@ public class Update_Info extends AppCompatActivity {
                            if(flag==true) {
                                int amountFromDB = snapshot.child(currentuser).child("members").child(selectedPerson).child("money").getValue(Integer.class);
                                float mealFromDB = snapshot.child(currentuser).child("members").child(selectedPerson).child("meal").getValue(Float.class);
-                               updateData.put("meal", (mealAdd + mealFromDB));
-                               updateData.put("money", (amountAdd + amountFromDB));
-                               reference.child(currentuser).child("members").child(selectedPerson).updateChildren(updateData);
+                               //updateData.put("meal", (mealAdd + mealFromDB));
+                               //updateData.put("money", (amountAdd + amountFromDB));
+                               MemberModel model = new MemberModel(selectedPerson, amountAdd+amountFromDB, mealFromDB+mealAdd);
+                               reference.child(currentuser).child("members").child(selectedPerson).setValue(model);
+                               //reference.child(currentuser).child("members").child(selectedPerson).updateChildren(updateData);
                                Toast.makeText(Update_Info.this, "Updated successfully", Toast.LENGTH_SHORT).show();
                                flag=false;
                            }
@@ -138,8 +138,10 @@ public class Update_Info extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot itemSanpshot : snapshot.child(currentuser).child("members").getChildren()){
-                    arrayList.add(itemSanpshot.child("name").getValue(String.class));
+                if(flag==true){
+                    for(DataSnapshot itemSanpshot : snapshot.child(currentuser).child("members").getChildren()){
+                        arrayList.add(itemSanpshot.child("name").getValue(String.class));
+                    }
                 }
             }
 

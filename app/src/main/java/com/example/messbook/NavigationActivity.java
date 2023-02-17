@@ -39,6 +39,7 @@ public class NavigationActivity extends AppCompatActivity implements View.OnClic
     private Member_DB m_DB;
     private Cost_DB c_DB;
     FirebaseAuth mAuth;
+    public static float m_rate;
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -169,7 +170,6 @@ public class NavigationActivity extends AppCompatActivity implements View.OnClic
             });
             alertDialog.show();
         }
-
     }
 
     @Override
@@ -235,14 +235,18 @@ public class NavigationActivity extends AppCompatActivity implements View.OnClic
 
                 if(sumAllMeal==0.0f || sumAllCost == 0) mealRate.setText("0.0 TK ");
                 else {
-                    float m_rate = (float) sumAllCost / sumAllMeal;
-                    mealRate.setText(String.format("%.1f", m_rate) + " TK  ");
+                    m_rate = (float) sumAllCost / sumAllMeal;
+                    mealRate.setText(String.format("%.2f", m_rate) + " TK  ");
                 }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+    }
+
+    public  static float getMealRate(){
+        return m_rate;
     }
 
 }

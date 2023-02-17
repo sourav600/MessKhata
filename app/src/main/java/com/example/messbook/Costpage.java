@@ -51,7 +51,7 @@ public class Costpage extends AppCompatActivity {
         costFloatingBtn = findViewById(R.id.costFloatingBtnId);
         costRecycler = (RecyclerView) findViewById(R.id.costRecyclerId);
         costImageMenu = findViewById(R.id.costImageMenuId);
-        costDb = new Cost_DB(Costpage.this);
+        //costDb = new Cost_DB(Costpage.this);
 
         //ArrayList<CostModel> list = costDb.getCostData();
         ArrayList<CostModel> list = new ArrayList<>();

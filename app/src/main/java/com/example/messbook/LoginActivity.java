@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
     TextInputEditText etLoginEmail;
     TextInputEditText etLoginPassword;
-    TextView tvRegisterHere,tvForgotPass;
+    TextView tvRegisterHere,tvForgotPass,loginAsmember;
     Button btnLogin;
     FirebaseAuth mAuth;
 
@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         tvRegisterHere = findViewById(R.id.tvRegisterHere);
         btnLogin = findViewById(R.id.btnLoginId);
         tvForgotPass = findViewById(R.id.tvForgotPassId);
+        loginAsmember = findViewById(R.id.loginAsmemberId);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -60,6 +61,9 @@ public class LoginActivity extends AppCompatActivity {
         });
         tvForgotPass.setOnClickListener(view -> {
             startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+        });
+        loginAsmember.setOnClickListener(view -> {
+            startActivity(new Intent(LoginActivity.this, LoginAsMemberActivity.class));
         });
     }
 
