@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.messbook.Database.Cost_DB;
 import com.example.messbook.Database.Member_DB;
+import com.example.messbook.LoginActivity;
 import com.example.messbook.Model.MemberModel;
 import com.example.messbook.NavigationActivity;
 import com.example.messbook.R;
@@ -80,44 +81,52 @@ public class MemberAdapterClass extends RecyclerView.Adapter<MemberAdapterClass.
         //get username from SignUp activity
         SharedPreferences sharedPreferences = context.getSharedPreferences("shared_preferences", MODE_PRIVATE);
         String currentuser = sharedPreferences.getString("user", "default_value");
+        //check Admin login or not
+        SharedPreferences sharedPreferences2 = context.getSharedPreferences(LoginActivity.preferenceName,0);
+        boolean adminLoggedIn = sharedPreferences2.getBoolean("hasLoggedIn",false);
 
         final String user = memberModelArrayList.get(position).getName();
         //click listener on recycler item
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                AlertDialog.Builder alertDialog  = new AlertDialog.Builder(context);
-                alertDialog.setTitle("Delete!");
-                alertDialog.setMessage("Do you want to delete this data?");
-                alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(currentuser).
-                                child("members");
-                        Query query = ref.child(user);
-                        query.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                snapshot.getRef().removeValue();
-                                Toast.makeText(context, "Deleted...", Toast.LENGTH_SHORT).show();
-                            }
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+                if(adminLoggedIn) {
+                    alertDialog.setTitle("Delete!");
+                    alertDialog.setMessage("Do you want to delete this data?");
+                    alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(currentuser).
+                                    child("members");
+                            Query query = ref.child(user);
+                            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    snapshot.getRef().removeValue();
+                                    Toast.makeText(context, "Deleted...", Toast.LENGTH_SHORT).show();
+                                }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
 
-                            }
-                        });
+                                }
+                            });
 
 
-                    }
-                });
-                alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
-                alertDialog.show();
+                        }
+                    });
+                    alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    alertDialog.show();
+                }
+                else{
+                    Toast.makeText(context, "Only Admin can delete data", Toast.LENGTH_SHORT).show();
+                }
                 return true;
             }
         });
