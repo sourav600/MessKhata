@@ -58,6 +58,7 @@ public class SignUpActivity extends AppCompatActivity {
         String password = etRegPassword.getText().toString();
         String username = etUsername.getText().toString();
 
+
         if (TextUtils.isEmpty(email)){
             etRegEmail.setError("Email cannot be empty");
             etRegEmail.requestFocus();
@@ -70,11 +71,11 @@ public class SignUpActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
                         LogInHelper helper = new LogInHelper(username,email,password);
-                        reference.child(username).child("login_Info").setValue(helper);
-                        SharedPreferences sharedPreferences = getSharedPreferences("shared_preferences", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("user", username.replace(".",""));
-                        editor.apply();
+                        reference.child(email.replace(".","")).child("login_Info").setValue(helper);
+//                        SharedPreferences sharedPreferences = getSharedPreferences("shared_preferences", MODE_PRIVATE);
+//                        SharedPreferences.Editor editor = sharedPreferences.edit();
+//                        editor.putString("user", username.replace(".",""));
+//                        editor.apply();
                         Toast.makeText(SignUpActivity.this, "Resistration successful", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                     }else{

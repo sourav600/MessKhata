@@ -237,7 +237,7 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="20dp"
+            android:layout_margin="10dp"
             android:layout_gravity="center_vertical"
             android:rowCount="2"
             android:columnCount="2">
@@ -396,8 +396,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:backgroundTint="@color/appColor"
             android:elevation="10dp"
             android:padding="15dp"

@@ -41,11 +41,7 @@ public class Costpage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_costpage);
 
-        //change action bar color
-//        ActionBar actionBar;
-//        actionBar = getSupportActionBar();
-//        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#1DB7AE"));
-//        actionBar.setBackgroundDrawable(colorDrawable);
+
         getWindow().setStatusBarColor(ContextCompat.getColor(Costpage.this, R.color.appColor));
 
         costFloatingBtn = findViewById(R.id.costFloatingBtnId);
@@ -55,14 +51,15 @@ public class Costpage extends AppCompatActivity {
 
         //ArrayList<CostModel> list = costDb.getCostData();
         ArrayList<CostModel> list = new ArrayList<>();
+        ArrayList<CostModel> list2 = new ArrayList<>();
 
         CostAdapterClass costAdapter = new CostAdapterClass(Costpage.this,list);
         costRecycler.setAdapter(costAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(Costpage.this);
         costRecycler.setLayoutManager(layoutManager);
 
-        //get username from SignUp activity
-        SharedPreferences sharedPreferences = getSharedPreferences("shared_preferences", MODE_PRIVATE);
+        //get username from Login activity
+        SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.preferenceName,0);
         String currentuser = sharedPreferences.getString("user", "default_value");
 
         //Get data from Firebase
@@ -73,7 +70,10 @@ public class Costpage extends AppCompatActivity {
                 list.clear();
                 for(DataSnapshot itemSnapshot : snapshot.child(currentuser).child("costs").getChildren()){
                     CostModel costModel = itemSnapshot.getValue(CostModel.class);
-                    list.add(costModel);
+                    list2.add(costModel);
+                }
+                for (int i=list2.size()-1;i>=0;i--){
+                    list.add(list2.get(i));
                 }
                 costAdapter.notifyDataSetChanged();
             }

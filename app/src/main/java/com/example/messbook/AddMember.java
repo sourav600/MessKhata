@@ -35,12 +35,6 @@ public class AddMember extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_member);
-
-        //change action bar color
-        ActionBar actionBar;
-        actionBar = getSupportActionBar();
-        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#1DB7AE"));
-        actionBar.setBackgroundDrawable(colorDrawable);
         getWindow().setStatusBarColor(ContextCompat.getColor(AddMember.this, R.color.appColor));
 
         member_db = new Member_DB(AddMember.this);
@@ -50,8 +44,8 @@ public class AddMember extends AppCompatActivity {
         meal_et = (EditText) findViewById(R.id.addMealId);
         addNewMemberBtn = (Button) findViewById(R.id.addNewMemberBtnId);
 
-        //get username from SignUp activity
-        SharedPreferences sharedPreferences = getSharedPreferences("shared_preferences", MODE_PRIVATE);
+        //get username from Login activity
+        SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.preferenceName,0);
         String currentuser = sharedPreferences.getString("user", "default_value");
 
         addNewMemberBtn.setOnClickListener(new View.OnClickListener() {

@@ -45,12 +45,6 @@ public class AddCost extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_cost);
-
-        //change action bar color
-        ActionBar actionBar;
-        actionBar = getSupportActionBar();
-        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#1DB7AE"));
-        actionBar.setBackgroundDrawable(colorDrawable);
         getWindow().setStatusBarColor(ContextCompat.getColor(AddCost.this, R.color.appColor));
 
         costDate = findViewById(R.id.costDate_Id);
@@ -87,8 +81,8 @@ public class AddCost extends AppCompatActivity {
             }
         });
 
-        //get username from SignUp activity
-        SharedPreferences sharedPreferences = getSharedPreferences("shared_preferences", MODE_PRIVATE);
+        //get username from Login activity
+        SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.preferenceName,0);
         String currentuser = sharedPreferences.getString("user", "default_value");
 
         //send user data to cost model
@@ -140,8 +134,8 @@ public class AddCost extends AppCompatActivity {
 
     //fill spinner from database
     public void fillSpinner() {
-        //get username from SignUp activity
-        SharedPreferences sharedPreferences = getSharedPreferences("shared_preferences", MODE_PRIVATE);
+        //get username from Login activity
+        SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.preferenceName,0);
         String currentuser = sharedPreferences.getString("user", "default_value");
         member_db = new Member_DB(this);
         ArrayList<String> arrayList = new ArrayList<String>();

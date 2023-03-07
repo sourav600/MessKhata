@@ -2,27 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group
         android:checkableBehavior="single">
-
                 <item
                     android:id="@+id/mHome"
                     android:icon="@drawable/ic_baseline_home_24"
                     android:title="Dashboard" />
-
                 <item
                     android:id="@+id/nav_M_listId"
                     android:icon="@drawable/ic_baseline_person_24"
                     android:title="Member List" />
-
                 <item
                     android:id="@+id/nav_C_listId"
                     android:icon="@drawable/ic_baseline_monetization_on_24"
                     android:title="Cost List" />
-
                 <item
                     android:id="@+id/nav_M_addId"
                     android:icon="@drawable/ic_baseline_person_add_24"
                     android:title="Add Member" />
-
                 <item
                     android:id="@+id/nav_C_addId"
                     android:icon="@drawable/ic_baseline_add_chart_24"

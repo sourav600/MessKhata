@@ -54,9 +54,10 @@ public class MemberPage extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.members_rv);
 
         ArrayList<MemberModel> list = new ArrayList<>();
+        ArrayList<MemberModel> list2 = new ArrayList<>();
 
         //get username from SignUp activity
-        SharedPreferences sharedPreferences = getSharedPreferences("shared_preferences", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.preferenceName,0);
         String currentuser = sharedPreferences.getString("user", "default_value");
 
 //        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users").child(currentuser).child("members");
@@ -80,6 +81,9 @@ public class MemberPage extends AppCompatActivity {
                 for(DataSnapshot itemSnapshot : snapshot.child(currentuser).child("members").getChildren()){
                     MemberModel memberModel = itemSnapshot.getValue(MemberModel.class);
                     list.add(memberModel);
+                }
+                for (int i=list2.size()-1;i>=0;i--){
+                    list.add(list2.get(i));
                 }
                 memberAdapter.notifyDataSetChanged();
             }

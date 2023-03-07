@@ -49,12 +49,6 @@ public class Update_Info extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_info);
-
-        //change action bar color
-        ActionBar actionBar;
-        actionBar = getSupportActionBar();
-        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#1DB7AE"));
-        actionBar.setBackgroundDrawable(colorDrawable);
         getWindow().setStatusBarColor(ContextCompat.getColor(Update_Info.this, R.color.appColor));
 
         incrementMeal = findViewById(R.id.incrementMealId);
@@ -83,8 +77,8 @@ public class Update_Info extends AppCompatActivity {
            }
        });
 
-        //get username from SignUp activity
-        SharedPreferences sharedPreferences = getSharedPreferences("shared_preferences", MODE_PRIVATE);
+        //get username from Login activity
+        SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.preferenceName,0);
         String currentuser = sharedPreferences.getString("user", "default_value");
 
        updateBtn.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +103,6 @@ public class Update_Info extends AppCompatActivity {
                                //updateData.put("money", (amountAdd + amountFromDB));
                                MemberModel model = new MemberModel(selectedPerson, amountAdd+amountFromDB, mealFromDB+mealAdd);
                                reference.child(currentuser).child("members").child(selectedPerson).setValue(model);
-                               //reference.child(currentuser).child("members").child(selectedPerson).updateChildren(updateData);
                                Toast.makeText(Update_Info.this, "Updated successfully", Toast.LENGTH_SHORT).show();
                                flag=false;
                            }
@@ -130,8 +123,8 @@ public class Update_Info extends AppCompatActivity {
         arrayList.add("Select");
         //arrayList.addAll(member_db.getMemberName()) ;
 
-        //get username from SignUp activity
-        SharedPreferences sharedPreferences = getSharedPreferences("shared_preferences", MODE_PRIVATE);
+        //get username from Login activity
+        SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.preferenceName,0);
         String currentuser = sharedPreferences.getString("user", "default_value");
 
         DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("users");

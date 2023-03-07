@@ -45,8 +45,8 @@ public class CostpageForMember extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(CostpageForMember.this);
         costRecycler.setLayoutManager(layoutManager);
 
-        //get username from SignUp activity
-        SharedPreferences sharedPreferences = getSharedPreferences("shared_preferences", MODE_PRIVATE);
+        //get username from Login activity
+        SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.preferenceName,0);
         String currentuser = sharedPreferences.getString("user", "default_value");
 
         //Get data from Firebase

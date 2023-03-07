@@ -208,8 +208,8 @@ public class NavigationActivity extends AppCompatActivity implements View.OnClic
         if(drawerLayout.isDrawerVisible(GravityCompat.START))
             drawerLayout.closeDrawer(GravityCompat.START);
 
-        //get username from SignUp activity
-        SharedPreferences sharedPreferences = getSharedPreferences("shared_preferences", MODE_PRIVATE);
+        //get username from Login activity
+        SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.preferenceName,0);
         String currentuser = sharedPreferences.getString("user", "default_value");
 
         //Total Amount, Total Meal, Total Cost

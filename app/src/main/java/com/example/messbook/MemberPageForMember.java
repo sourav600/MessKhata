@@ -49,8 +49,8 @@ public class MemberPageForMember extends AppCompatActivity {
 
         ArrayList<MemberModel> list = new ArrayList<>();
 
-        //get username from SignUp activity
-        SharedPreferences sharedPreferences = getSharedPreferences("shared_preferences", MODE_PRIVATE);
+        //get username from Login activity
+        SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.preferenceName,0);
         String currentuser = sharedPreferences.getString("user", "default_value");
 
         memberAdapter = new MemberAdapterClass(MemberPageForMember.this,list);

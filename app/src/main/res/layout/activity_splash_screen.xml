@@ -8,21 +8,18 @@
     android:orientation="horizontal"
     android:gravity="center"
     tools:context=".SplashScreen">
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="2"
-        android:gravity="center_vertical|center_horizontal"
-        >
+        android:gravity="center_vertical|center_horizontal">
         <ImageView
             android:layout_width="300dp"
             android:layout_height="0dp"
             android:layout_weight="1.8"
             android:src="@drawable/appimage"
-            android:layout_gravity="center_horizontal"
-            ></ImageView>
+            android:layout_gravity="center_horizontal"></ImageView>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,8 +28,6 @@
             android:textStyle="bold"
             android:fontFamily="monospace"
             android:textColor="@color/white"
-            android:textSize="18dp"
-            />
+            android:textSize="18dp" />
     </LinearLayout>
-
 </LinearLayout>

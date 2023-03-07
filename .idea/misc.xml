@@ -29,14 +29,14 @@
         <entry key="app/src/main/res/drawable/rectangle_box.xml" value="0.1715" />
         <entry key="app/src/main/res/drawable/send.xml" value="0.1705" />
         <entry key="app/src/main/res/drawable/user.xml" value="0.1615" />
-        <entry key="app/src/main/res/layout/activity_add_cost.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_add_member.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_add_cost.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_add_member.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_costpage.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_costpage_for_member.xml" value="0.187890625" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.25052083333333336" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login_as_member.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.232421875" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.187890625" />
         <entry key="app/src/main/res/layout/activity_main_activityfor_member.xml" value="0.232421875" />
         <entry key="app/src/main/res/layout/activity_member_login.xml" value="0.187890625" />
         <entry key="app/src/main/res/layout/activity_member_page.xml" value="0.2" />
@@ -45,7 +45,7 @@
         <entry key="app/src/main/res/layout/activity_navigation_for_member.xml" value="0.20625" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/activity_update_info.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_update_info.xml" value="0.1" />
         <entry key="app/src/main/res/layout/cost_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/drawar_head_layout.xml" value="0.14673913043478262" />
         <entry key="app/src/main/res/layout/member_dialog.xml" value="0.25052083333333336" />

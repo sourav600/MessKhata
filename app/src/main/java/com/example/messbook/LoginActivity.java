@@ -86,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreferences preferences = getSharedPreferences(LoginActivity.preferenceName,0);
                         SharedPreferences.Editor editor = preferences.edit();
                         editor.putBoolean("hasLoggedIn",true);
+                        editor.putString("user",email.replace(".",""));
                         editor.commit();
                         startActivity(new Intent(LoginActivity.this, NavigationActivity.class));
                     }else{
